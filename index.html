@@ -29,32 +29,13 @@
             scroll-behavior: smooth;
         }
 
-        /* تأثير الورد في الخلفية والأركان */
-        .hero, .details-section, .location-section {
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* ورود مائية خفيفة في الخلفية العامة */
-        .bg-floral-watermark {
+        /* تنسيق الورد الواضح في الأركان */
+        .floral-corner {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.04; /* خفيفة جداً عشان متغطيش على الكلام */
-            pointer-events: none;
+            width: 180px;
+            height: 180px;
             z-index: 0;
-        }
-
-        /* ورود أنيقة في الأركان */
-        .corner-flower {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            opacity: 0.15;
             pointer-events: none;
-            z-index: 0;
         }
         .top-left { top: 0; left: 0; }
         .top-right { top: 0; right: 0; transform: scaleX(-1); }
@@ -70,6 +51,7 @@
             align-items: center;
             background: linear-gradient(to bottom, var(--white), var(--bg-color));
             padding: 20px;
+            position: relative;
             animation: fadeIn 2s ease-in; /* حركة ظهور ناعمة */
         }
 
@@ -116,6 +98,7 @@
         .details-section {
             padding: 80px 20px;
             background-color: var(--white);
+            position: relative;
         }
 
         .date {
@@ -165,6 +148,7 @@
         .location-section {
             padding: 80px 20px;
             background-color: var(--bg-color);
+            position: relative;
         }
 
         .venue {
@@ -220,39 +204,25 @@
             .time-box { padding: 15px; min-width: 70px; }
             .number { font-size: 2rem; }
             .label { font-size: 0.7rem; }
-            .corner-flower { width: 100px; height: 100px; }
+            .floral-corner { width: 100px; height: 100px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- القالب المشترك للنقشة الجمالية للورود (SVG عالي الجودة) -->
-    <svg style="display: none;">
-        <symbol id="flower-svg" viewBox="0 0 100 100">
-            <path d="M10,90 Q30,70 50,50 T90,10 M50,50 Q60,35 55,20 Q40,25 50,50 M50,50 Q35,60 20,55 Q25,40 50,50 M30,70 Q25,85 15,80 Q20,65 30,70 M70,30 Q65,45 55,40 Q60,25 70,30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="50" cy="50" r="2" fill="currentColor"/>
-        </symbol>
-        <symbol id="pattern-flower" viewBox="0 0 100 100">
-            <path d="M50,25 C55,10 70,10 65,25 C60,40 50,45 50,50 C50,45 40,40 35,25 C30,10 45,10 50,25 Z" fill="currentColor"/>
-            <path d="M25,50 C10,55 10,70 25,65 C40,60 45,50 50,50 C45,50 40,40 25,35 C10,30 10,45 25,50 Z" fill="currentColor"/>
-            <path d="M50,75 C45,90 30,90 35,75 C40,60 50,55 50,50 C50,55 60,60 65,75 C70,90 55,90 50,75 Z" fill="currentColor"/>
-            <path d="M75,50 C90,45 90,30 75,35 C60,40 55,50 50,50 C55,50 60,60 75,65 C90,70 90,55 75,50 Z" fill="currentColor"/>
-        </symbol>
-    </svg>
-
     <!-- الافتتاحية -->
     <section class="hero">
-        <!-- ورود الأركان -->
-        <svg class="corner-flower top-left" style="color: var(--dark-accent);"><use href="#flower-svg"/></svg>
-        <svg class="corner-flower top-right" style="color: var(--dark-accent);"><use href="#flower-svg"/></svg>
-        
-        <!-- خلفية مائية مكررة خفيفة -->
-        <svg class="bg-floral-watermark" style="color: var(--accent-color); opacity: 0.02;">
-            <pattern id="bg-pattern" width="100" height="100" patternUnits="userSpaceOnUse">
-                <use href="#pattern-flower" x="10" y="10" width="30" height="30"/>
-                <use href="#pattern-flower" x="60" y="50" width="30" height="30"/>
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#bg-pattern)"/>
+        <!-- الورد العلوي الاحترافي والظاهر تماماً -->
+        <svg class="floral-corner top-left" viewBox="0 0 100 100" fill="none" stroke="#8E7C5E" stroke-width="1.5">
+            <path d="M0,0 Q40,10 50,50 T100,100" />
+            <path d="M20,10 Q35,30 10,50 C5,35 10,20 20,10 Z" fill="#C3B091" opacity="0.3"/>
+            <path d="M10,20 Q30,35 50,10 C35,5 20,10 10,20 Z" fill="#C3B091" opacity="0.3"/>
+            <circle cx="25" cy="25" r="3" fill="#8E7C5E"/>
+        </svg>
+        <svg class="floral-corner top-right" viewBox="0 0 100 100" fill="none" stroke="#8E7C5E" stroke-width="1.5">
+            <path d="M0,0 Q40,10 50,50 T100,100" />
+            <path d="M20,10 Q35,30 10,50 C5,35 10,20 20,10 Z" fill="#C3B091" opacity="0.3"/>
+            <circle cx="25" cy="25" r="3" fill="#8E7C5E"/>
         </svg>
 
         <div class="intro-text">We are getting married</div>
@@ -265,10 +235,9 @@
 
     <!-- التفاصيل والعداد التنازلي -->
     <section class="details-section">
-        <svg class="bg-floral-watermark" style="color: var(--accent-color); opacity: 0.03;"><use href="#pattern-flower" x="10%" y="20%" width="150" height="150"/><use href="#pattern-flower" x="75%" y="40%" width="120" height="120"/></svg>
-        
         <h2 class="date">Save The Date</h2>
-        <p style="letter-spacing: 2px; color: #8E7C5E;">FRIDAY, JULY 10, 2026</p>
+        <!-- تم تعديل النص ليكون الساعة 8 مساءً -->
+        <p style="letter-spacing: 2px; color: #8E7C5E; font-weight: 500;">FRIDAY, JULY 10, 2026 AT 8:00 PM</p>
         
         <div class="countdown-container">
             <div class="time-box">
@@ -292,14 +261,21 @@
 
     <!-- المكان وزر الخريطة -->
     <section class="location-section">
-        <!-- ورود الأركان السفلية -->
-        <svg class="corner-flower bottom-left" style="color: var(--dark-accent);"><use href="#flower-svg"/></svg>
-        <svg class="corner-flower bottom-right" style="color: var(--dark-accent);"><use href="#flower-svg"/></svg>
+        <!-- الورد السفلي المظبوط -->
+        <svg class="floral-corner bottom-left" viewBox="0 0 100 100" fill="none" stroke="#8E7C5E" stroke-width="1.5">
+            <path d="M0,0 Q40,10 50,50 T100,100" />
+            <path d="M20,10 Q35,30 10,50 C5,35 10,20 20,10 Z" fill="#C3B091" opacity="0.3"/>
+            <circle cx="25" cy="25" r="3" fill="#8E7C5E"/>
+        </svg>
+        <svg class="floral-corner bottom-right" viewBox="0 0 100 100" fill="none" stroke="#8E7C5E" stroke-width="1.5">
+            <path d="M0,0 Q40,10 50,50 T100,100" />
+            <path d="M20,10 Q35,30 10,50 C5,35 10,20 20,10 Z" fill="#C3B091" opacity="0.3"/>
+            <circle cx="25" cy="25" r="3" fill="#8E7C5E"/>
+        </svg>
 
         <div class="intro-text">Join Us At</div>
         <h2 class="venue">Golden Plaza</h2>
         <p>We can't wait to celebrate with you!</p>
-        <!-- الزرار ده متبرمج يفتح اللينك اللي إنت بعته -->
         <a href="https://maps.app.goo.gl/AMYfMQbmzNiTB344A?g_st=ac" target="_blank" class="map-btn">
             Open in Google Maps
         </a>
@@ -311,7 +287,7 @@
 
     <!-- سكربت برمجة العداد -->
     <script>
-        // تاريخ الفرح المظبوط على الساعة 8 مساءً
+        // تعديل تاريخ الفرح بالمللي ليكون الساعة 8 مساءً (20:00:00)
         const weddingDate = new Date("July 10, 2026 20:00:00").getTime();
         
         const timer = setInterval(function() {
@@ -332,7 +308,6 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
-            // إضافة صفر لو الرقم أقل من 10 (عشان الشكل يبقى أحلى)
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
