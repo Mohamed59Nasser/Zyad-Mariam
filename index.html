@@ -17,6 +17,7 @@
             --text-color: #4A4A4A; /* رمادي غامق جداً للقراءة */
             --accent-color: #C3B091; /* بيج أنيق */
             --dark-accent: #8E7C5E; /* بيج غامق للتباين */
+            --rose-gold: #E6D7C3;   /* لون الورد المبهج */
         }
 
         body, html {
@@ -29,12 +30,20 @@
             scroll-behavior: smooth;
         }
 
-        /* تنسيق الورد الواضح في الأركان */
-        .floral-corner {
+        /* تنسيق باقات الورد الكبيرة والظاهرة */
+        .wreath-container {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto 15px auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .corner-flowers {
             position: absolute;
-            width: 180px;
-            height: 180px;
-            z-index: 0;
+            width: 150px;
+            height: 150px;
+            z-index: 1;
             pointer-events: none;
         }
         .top-left { top: 0; left: 0; }
@@ -62,7 +71,7 @@
             color: var(--dark-accent);
             margin-bottom: 20px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .names {
@@ -72,7 +81,7 @@
             line-height: 1.2;
             margin: 10px 0;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .and {
@@ -82,7 +91,7 @@
             color: var(--accent-color);
             margin: 10px 0;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .divider {
@@ -91,7 +100,7 @@
             background-color: var(--accent-color);
             margin: 30px auto;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         /* القسم الثاني: التاريخ والعداد */
@@ -106,7 +115,7 @@
             font-size: 2.8rem;
             margin-bottom: 10px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .countdown-container {
@@ -116,7 +125,7 @@
             margin: 40px 0;
             flex-wrap: wrap;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .time-box {
@@ -156,7 +165,7 @@
             font-size: 2.5rem;
             margin-bottom: 10px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .map-btn {
@@ -173,7 +182,7 @@
             transition: background 0.3s, transform 0.3s;
             box-shadow: 0 4px 15px rgba(195, 176, 145, 0.4);
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .map-btn:hover {
@@ -188,7 +197,7 @@
             letter-spacing: 2px;
             color: var(--dark-accent);
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         /* تأثير الظهور */
@@ -204,7 +213,8 @@
             .time-box { padding: 15px; min-width: 70px; }
             .number { font-size: 2rem; }
             .label { font-size: 0.7rem; }
-            .floral-corner { width: 100px; height: 100px; }
+            .corner-flowers { width: 90px; height: 90px; }
+            .wreath-container { max-width: 200px; }
         }
     </style>
 </head>
@@ -212,18 +222,41 @@
 
     <!-- الافتتاحية -->
     <section class="hero">
-        <!-- الورد العلوي الاحترافي والظاهر تماماً -->
-        <svg class="floral-corner top-left" viewBox="0 0 100 100" fill="none" stroke="#8E7C5E" stroke-width="1.5">
-            <path d="M0,0 Q40,10 50,50 T100,100" />
-            <path d="M20,10 Q35,30 10,50 C5,35 10,20 20,10 Z" fill="#C3B091" opacity="0.3"/>
-            <path d="M10,20 Q30,35 50,10 C35,5 20,10 10,20 Z" fill="#C3B091" opacity="0.3"/>
-            <circle cx="25" cy="25" r="3" fill="#8E7C5E"/>
+        <!-- ورد الأركان العلوي الظاهر والملون -->
+        <svg class="corner-flowers top-left" viewBox="0 0 100 100" fill="none">
+            <path d="M0,0 Q30,10 40,40 T80,80" stroke="var(--dark-accent)" stroke-width="2"/>
+            <circle cx="20" cy="20" r="12" fill="var(--accent-color)" />
+            <circle cx="35" cy="15" r="8" fill="var(--rose-gold)" />
+            <circle cx="15" cy="35" r="8" fill="var(--rose-gold)" />
+            <path d="M5,45 Q20,35 40,50" stroke="var(--dark-accent)" stroke-width="1.5"/>
+            <path d="M45,5 Q35,20 50,40" stroke="var(--dark-accent)" stroke-width="1.5"/>
         </svg>
-        <svg class="floral-corner top-right" viewBox="0 0 100 100" fill="none" stroke="#8E7C5E" stroke-width="1.5">
-            <path d="M0,0 Q40,10 50,50 T100,100" />
-            <path d="M20,10 Q35,30 10,50 C5,35 10,20 20,10 Z" fill="#C3B091" opacity="0.3"/>
-            <circle cx="25" cy="25" r="3" fill="#8E7C5E"/>
+        <svg class="corner-flowers top-right" viewBox="0 0 100 100" fill="none">
+            <path d="M0,0 Q30,10 40,40 T80,80" stroke="var(--dark-accent)" stroke-width="2"/>
+            <circle cx="20" cy="20" r="12" fill="var(--accent-color)" />
+            <circle cx="35" cy="15" r="8" fill="var(--rose-gold)" />
+            <circle cx="15" cy="35" r="8" fill="var(--rose-gold)" />
         </svg>
+
+        <!-- باقة ورد مركزية كبيرة فوق الأسماء تعبر عن الفرحة بجد -->
+        <div class="wreath-container">
+            <svg viewBox="0 0 200 100" fill="none">
+                <!-- الوردة الكبيرة في النص -->
+                <circle cx="100" cy="50" r="22" fill="var(--accent-color)"/>
+                <circle cx="100" cy="50" r="14" fill="var(--rose-gold)"/>
+                <circle cx="100" cy="50" r="6" fill="var(--dark-accent)"/>
+                <!-- الورد الجانبي -->
+                <circle cx="65" cy="55" r="14" fill="var(--rose-gold)"/>
+                <circle cx="65" cy="55" r="6" fill="var(--dark-accent)"/>
+                <circle cx="135" cy="55" r="14" fill="var(--rose-gold)"/>
+                <circle cx="135" cy="55" r="6" fill="var(--dark-accent)"/>
+                <!-- أوراق الشجر والزينة الخضراء/الذهبية -->
+                <path d="M45,60 Q30,50 15,55 Q30,65 45,60 Z" fill="var(--dark-accent)"/>
+                <path d="M155,60 Q170,50 185,55 Q170,65 155,60 Z" fill="var(--dark-accent)"/>
+                <path d="M100,20 Q110,5 120,20 Q110,30 100,20 Z" fill="var(--accent-color)"/>
+                <path d="M100,20 Q90,5 80,20 Q90,30 100,20 Z" fill="var(--accent-color)"/>
+            </svg>
+        </div>
 
         <div class="intro-text">We are getting married</div>
         <div class="names">Zyad Nasser</div>
@@ -235,8 +268,16 @@
 
     <!-- التفاصيل والعداد التنازلي -->
     <section class="details-section">
+        <!-- باقة ورد رقيقة للفصل بين الأقسام -->
+        <div style="max-width: 120px; margin: 0 auto 15px auto;">
+            <svg viewBox="0 0 100 40" fill="none">
+                <circle cx="50" cy="20" r="10" fill="var(--accent-color)"/>
+                <circle cx="35" cy="22" r="7" fill="var(--rose-gold)"/>
+                <circle cx="65" cy="22" r="7" fill="var(--rose-gold)"/>
+            </svg>
+        </div>
+
         <h2 class="date">Save The Date</h2>
-        <!-- تم تعديل النص ليكون الساعة 8 مساءً -->
         <p style="letter-spacing: 2px; color: #8E7C5E; font-weight: 500;">FRIDAY, JULY 10, 2026 AT 8:00 PM</p>
         
         <div class="countdown-container">
@@ -261,16 +302,18 @@
 
     <!-- المكان وزر الخريطة -->
     <section class="location-section">
-        <!-- الورد السفلي المظبوط -->
-        <svg class="floral-corner bottom-left" viewBox="0 0 100 100" fill="none" stroke="#8E7C5E" stroke-width="1.5">
-            <path d="M0,0 Q40,10 50,50 T100,100" />
-            <path d="M20,10 Q35,30 10,50 C5,35 10,20 20,10 Z" fill="#C3B091" opacity="0.3"/>
-            <circle cx="25" cy="25" r="3" fill="#8E7C5E"/>
+        <!-- ورد الأركان السفلي عشان يقفل التصميم بشياكة -->
+        <svg class="corner-flowers bottom-left" viewBox="0 0 100 100" fill="none">
+            <path d="M0,0 Q30,10 40,40 T80,80" stroke="var(--dark-accent)" stroke-width="2"/>
+            <circle cx="20" cy="20" r="12" fill="var(--accent-color)" />
+            <circle cx="35" cy="15" r="8" fill="var(--rose-gold)" />
+            <circle cx="15" cy="35" r="8" fill="var(--rose-gold)" />
         </svg>
-        <svg class="floral-corner bottom-right" viewBox="0 0 100 100" fill="none" stroke="#8E7C5E" stroke-width="1.5">
-            <path d="M0,0 Q40,10 50,50 T100,100" />
-            <path d="M20,10 Q35,30 10,50 C5,35 10,20 20,10 Z" fill="#C3B091" opacity="0.3"/>
-            <circle cx="25" cy="25" r="3" fill="#8E7C5E"/>
+        <svg class="corner-flowers bottom-right" viewBox="0 0 100 100" fill="none">
+            <path d="M0,0 Q30,10 40,40 T80,80" stroke="var(--dark-accent)" stroke-width="2"/>
+            <circle cx="20" cy="20" r="12" fill="var(--accent-color)" />
+            <circle cx="35" cy="15" r="8" fill="var(--rose-gold)" />
+            <circle cx="15" cy="35" r="8" fill="var(--rose-gold)" />
         </svg>
 
         <div class="intro-text">Join Us At</div>
@@ -287,7 +330,7 @@
 
     <!-- سكربت برمجة العداد -->
     <script>
-        // تعديل تاريخ الفرح بالمللي ليكون الساعة 8 مساءً (20:00:00)
+        // تاريخ الفرح المظبوط تماماً الساعة 8 مساءً (20:00:00)
         const weddingDate = new Date("July 10, 2026 20:00:00").getTime();
         
         const timer = setInterval(function() {
