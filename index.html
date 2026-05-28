@@ -3,124 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Wedding Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <!-- خطوط رسمية للطباعة -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* إعدادات الطباعة */
-        @page {
-            size: A5;
-            margin: 0;
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #e5e5e5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Montserrat', sans-serif;
+        @page { size: A5; margin: 0; }
+        body { 
+            margin: 0; padding: 0; background-color: #f0f0f0; 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; font-family: 'Montserrat', sans-serif;
             -webkit-print-color-adjust: exact;
         }
-
         .card {
-            width: 148mm;
-            height: 210mm;
-            background-color: #FAF9F6; /* لون كريمي هادي */
-            position: relative;
-            padding: 40px;
+            width: 148mm; height: 210mm;
+            background-color: #FAF9F6;
+            position: relative; padding: 50px;
             box-sizing: border-box;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-            border: 1px solid #d4c4a8;
-        }
-
-        /* الخلفية المائية */
-        .watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            opacity: 0.08;
-            z-index: 0;
-        }
-
-        /* المحتوى */
-        .content {
-            position: relative;
-            z-index: 1;
+            border: 5px double #8E7C5E;
             text-align: center;
-            color: #4a4a4a;
         }
+        /* تصميم الورد كإطارات جانبية */
+        .flower {
+            position: absolute; width: 120px; color: #8E7C5E; opacity: 0.8;
+        }
+        .top-left { top: 30px; left: 30px; }
+        .bottom-right { bottom: 30px; right: 30px; transform: rotate(180deg); }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #8E7C5E; /* لون برونزي */
-            margin-bottom: 10px;
-        }
-
-        .names {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            margin: 30px 0;
-            line-height: 1.4;
-            color: #333;
-        }
-
-        .details {
-            font-size: 1.1rem;
-            line-height: 2;
-            color: #555;
-        }
-
-        /* أيقونات الورد */
-        .flower-top {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 100px;
-            opacity: 0.6;
-        }
-
-        .flower-bottom {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            width: 100px;
-            opacity: 0.6;
-            transform: rotate(180deg);
-        }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #8E7C5E; margin-bottom: 20px; }
+        .names { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin: 50px 0; color: #333; line-height: 1.3; }
+        .details { font-size: 1.2rem; line-height: 2; color: #555; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <!-- الخلفية المائية -->
-        <svg class="watermark" viewBox="0 0 100 100">
-            <path d="M50 0 C 80 0, 100 20, 100 50 C 100 80, 80 100, 50 100 C 20 100, 0 80, 0 50 C 0 20, 20 0, 50 0 Z" fill="#8E7C5E"/>
-        </svg>
-
-        <!-- زينة الورد -->
-        <svg class="flower-top" viewBox="0 0 24 24" fill="#8E7C5E">
+        <!-- رسومات ورد بسيطة وأنيقة -->
+        <svg class="flower top-left" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z"/>
         </svg>
-        <svg class="flower-bottom" viewBox="0 0 24 24" fill="#8E7C5E">
+        <svg class="flower bottom-right" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z"/>
         </svg>
 
-        <div class="content">
-            <p>You are cordially invited to celebrate the marriage of</p>
+        <div style="margin-top: 60px;">
+            <p style="text-transform: uppercase; letter-spacing: 3px;">We are cordially invited</p>
             <div class="names">
                 Zyad Nasser<br>
-                <span style="font-size: 1.5rem; color: #8E7C5E;">&</span><br>
+                <span style="font-size: 1.8rem; font-style: italic;">&</span><br>
                 Mariam Sherif
             </div>
             <div class="details">
                 <p><strong>Golden Plaza</strong></p>
                 <p>Friday, July 10th, 2026</p>
-                <p>8:00 PM</p>
+                <p style="font-size: 1.6rem; font-weight: bold; color: #8E7C5E;">8:00 PM</p>
                 <br>
                 <p style="font-style: italic;">We look forward to celebrating with you.</p>
             </div>
@@ -129,11 +63,3 @@
 
 </body>
 </html>
-```eof
-
-### نصايح أخيرة يا عريس:
-1.  **طريقة الطباعة:** افتح الملف في المتصفح، دوس `Ctrl + P` (أو `Cmd + P` على الماك).
-2.  **إعدادات المتصفح:** تأكد إنك مفعل خيار **"Background Graphics"** (عشان يطبع الألوان والخلفية المائية)، واختار المقاس A5.
-3.  **نوع الورق:** عشان تطلع فخمة بجد، اطبعها على **ورق مقوى (Cardstock)**، وزنه لا يقل عن 250 أو 300 جرام.
-
-ألف مبروك، ولو محتاج أي تعديل في التصميم أنا معاك!
