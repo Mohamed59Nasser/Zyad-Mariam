@@ -2,258 +2,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zyad & Mariam - Wedding Invitation</title>
-    <!-- استدعاء خطوط أنيقة من جوجل -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    
+    <title>Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* إعدادات الألوان (أبيض، بيج، وأوف وايت) */
-        :root {
-            --bg-color: #FAF9F6; /* أوف وايت للخلفية */
-            --white: #FFFFFF;    /* أبيض ناصع */
-            --text-color: #4A4A4A; /* رمادي غامق جداً للقراءة */
-            --accent-color: #C3B091; /* بيج أنيق */
-            --dark-accent: #8E7C5E; /* بيج غامق للتباين */
+        /* إعدادات الطباعة */
+        @page {
+            size: A5;
+            margin: 0;
         }
-
-        body, html {
+        
+        body {
             margin: 0;
             padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
-            scroll-behavior: smooth;
-        }
-
-        /* القسم الأول: الأسماء */
-        .hero {
-            min-height: 100vh;
+            background-color: #e5e5e5;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to bottom, var(--white), var(--bg-color));
-            padding: 20px;
-            animation: fadeIn 2s ease-in; /* حركة ظهور ناعمة */
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-print-color-adjust: exact;
         }
 
-        .intro-text {
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.9rem;
-            color: var(--dark-accent);
-            margin-bottom: 20px;
+        .card {
+            width: 148mm;
+            height: 210mm;
+            background-color: #FAF9F6; /* لون كريمي هادي */
+            position: relative;
+            padding: 40px;
+            box-sizing: border-box;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #d4c4a8;
+        }
+
+        /* الخلفية المائية */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            opacity: 0.08;
+            z-index: 0;
+        }
+
+        /* المحتوى */
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #4a4a4a;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #8E7C5E; /* لون برونزي */
+            margin-bottom: 10px;
         }
 
         .names {
             font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            color: var(--text-color);
-            line-height: 1.2;
-            margin: 10px 0;
+            font-size: 2.2rem;
+            margin: 30px 0;
+            line-height: 1.4;
+            color: #333;
         }
 
-        .and {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 3rem;
-            color: var(--accent-color);
-            margin: 10px 0;
+        .details {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #555;
         }
 
-        .divider {
-            width: 60px;
-            height: 2px;
-            background-color: var(--accent-color);
-            margin: 30px auto;
+        /* أيقونات الورد */
+        .flower-top {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            opacity: 0.6;
         }
 
-        /* القسم الثاني: التاريخ والعداد */
-        .details-section {
-            padding: 80px 20px;
-            background-color: var(--white);
-        }
-
-        .date {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-        }
-
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-
-        .time-box {
-            background-color: var(--bg-color);
-            padding: 20px;
-            border-radius: 8px;
-            min-width: 90px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid rgba(195, 176, 145, 0.2);
-        }
-
-        .number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: var(--dark-accent);
-            display: block;
-        }
-
-        .label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-color);
-            margin-top: 5px;
-            display: block;
-        }
-
-        /* القسم الثالث: المكان وزر الخريطة */
-        .location-section {
-            padding: 80px 20px;
-            background-color: var(--bg-color);
-        }
-
-        .venue {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .map-btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 16px 45px;
-            background-color: var(--accent-color);
-            color: var(--white);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
-            border-radius: 30px; /* زرار بحواف دائرية أنيقة */
-            transition: background 0.3s, transform 0.3s;
-            box-shadow: 0 4px 15px rgba(195, 176, 145, 0.4);
-        }
-
-        .map-btn:hover {
-            background-color: var(--dark-accent);
-            transform: translateY(-3px); /* حركة خفيفة عند الوقوف على الزر */
-        }
-
-        footer {
-            padding: 30px;
-            background-color: var(--white);
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            color: var(--dark-accent);
-        }
-
-        /* تأثير الظهور */
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* توافق الموبايل */
-        @media (max-width: 600px) {
-            .names { font-size: 3rem; }
-            .countdown-container { gap: 10px; }
-            .time-box { padding: 15px; min-width: 70px; }
-            .number { font-size: 2rem; }
-            .label { font-size: 0.7rem; }
+        .flower-bottom {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 100px;
+            opacity: 0.6;
+            transform: rotate(180deg);
         }
     </style>
 </head>
 <body>
 
-    <!-- الافتتاحية -->
-    <section class="hero">
-        <div class="intro-text">We are getting married</div>
-        <div class="names">Zyad Nasser</div>
-        <div class="and">&</div>
-        <div class="names">Mariam Sherif</div>
-        <div class="divider"></div>
-        <p style="letter-spacing: 3px; font-weight: 300;">10 . 07 . 2026</p>
-    </section>
+    <div class="card">
+        <!-- الخلفية المائية -->
+        <svg class="watermark" viewBox="0 0 100 100">
+            <path d="M50 0 C 80 0, 100 20, 100 50 C 100 80, 80 100, 50 100 C 20 100, 0 80, 0 50 C 0 20, 20 0, 50 0 Z" fill="#8E7C5E"/>
+        </svg>
 
-    <!-- التفاصيل والعداد التنازلي -->
-    <section class="details-section">
-        <h2 class="date">Save The Date</h2>
-        <p style="letter-spacing: 2px; color: #8E7C5E;">FRIDAY, JULY 10, 2026</p>
-        
-        <div class="countdown-container">
-            <div class="time-box">
-                <span class="number" id="days">00</span>
-                <span class="label">Days</span>
+        <!-- زينة الورد -->
+        <svg class="flower-top" viewBox="0 0 24 24" fill="#8E7C5E">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z"/>
+        </svg>
+        <svg class="flower-bottom" viewBox="0 0 24 24" fill="#8E7C5E">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z"/>
+        </svg>
+
+        <div class="content">
+            <p>You are cordially invited to celebrate the marriage of</p>
+            <div class="names">
+                Zyad Nasser<br>
+                <span style="font-size: 1.5rem; color: #8E7C5E;">&</span><br>
+                Mariam Sherif
             </div>
-            <div class="time-box">
-                <span class="number" id="hours">00</span>
-                <span class="label">Hours</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="minutes">00</span>
-                <span class="label">Mins</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="seconds">00</span>
-                <span class="label">Secs</span>
+            <div class="details">
+                <p><strong>Golden Plaza</strong></p>
+                <p>Friday, July 10th, 2026</p>
+                <p>8:00 PM</p>
+                <br>
+                <p style="font-style: italic;">We look forward to celebrating with you.</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- المكان وزرار جوجل مابس -->
-    <section class="location-section">
-        <div class="intro-text">Join Us At</div>
-        <h2 class="venue">Golden Plaza</h2>
-        <p>We can't wait to celebrate with you!</p>
-        <!-- الزرار ده متبرمج يفتح اللينك اللي إنت بعته -->
-        <a href="https://maps.app.goo.gl/AMYfMQbmzNiTB344A?g_st=ac" target="_blank" class="map-btn">
-            Open in Google Maps
-        </a>
-    </section>
-
-    <footer>
-        Zyad & Mariam © 2026
-    </footer>
-
-    <!-- سكربت برمجة العداد -->
-    <script>
-        // تاريخ الفرح
-        const weddingDate = new Date("July 10, 2026 20:00:00").getTime();
-        
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-            
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
-                return;
-            }
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            // إضافة صفر لو الرقم أقل من 10 (عشان الشكل يبقى أحلى)
-            document.getElementById("days").innerText = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-        }, 1000);
-    </script>
 </body>
 </html>
+```eof
+
+### نصايح أخيرة يا عريس:
+1.  **طريقة الطباعة:** افتح الملف في المتصفح، دوس `Ctrl + P` (أو `Cmd + P` على الماك).
+2.  **إعدادات المتصفح:** تأكد إنك مفعل خيار **"Background Graphics"** (عشان يطبع الألوان والخلفية المائية)، واختار المقاس A5.
+3.  **نوع الورق:** عشان تطلع فخمة بجد، اطبعها على **ورق مقوى (Cardstock)**، وزنه لا يقل عن 250 أو 300 جرام.
+
+ألف مبروك، ولو محتاج أي تعديل في التصميم أنا معاك!
