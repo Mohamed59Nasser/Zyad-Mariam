@@ -2,266 +2,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zyad & Mariam - Wedding Invitation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-    
+    <title>Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* إعدادات الألوان والخطوط */
-        :root {
-            --bg-offwhite: #FAF9F6;
-            --bg-white: #FFFFFF;
-            --text-main: #3E3B38;
-            --accent-beige: #D4C4A8;
-            --accent-dark-beige: #B8A484;
+        /* إعدادات الطباعة */
+        @page {
+            size: A5;
+            margin: 0;
         }
-
-        * {
+        
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-offwhite);
-            color: var(--text-main);
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, .names {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-        }
-
-        /* حاوية أساسية */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* القسم الأول: الافتتاحية */
-        .hero {
-            height: 100vh;
+            background-color: #e5e5e5;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-print-color-adjust: exact;
+        }
+
+        .card {
+            width: 148mm;
+            height: 210mm;
+            background-color: #FAF9F6; /* لون كريمي هادي */
             position: relative;
+            padding: 40px;
+            box-sizing: border-box;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #d4c4a8;
         }
 
-        .hero::before, .hero::after {
-            content: '';
+        /* الخلفية المائية */
+        .watermark {
             position: absolute;
-            width: 1px;
-            height: 80px;
-            background-color: var(--accent-beige);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            opacity: 0.08;
+            z-index: 0;
         }
 
-        .hero::before { top: 10%; }
-        .hero::after { bottom: 10%; }
+        /* المحتوى */
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #4a4a4a;
+        }
 
-        .pre-title {
-            font-size: 0.9rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--accent-dark-beige);
-            margin-bottom: 20px;
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #8E7C5E; /* لون برونزي */
+            margin-bottom: 10px;
         }
 
         .names {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            color: var(--text-main);
-            margin-bottom: 20px;
-        }
-
-        .ampersand {
-            color: var(--accent-beige);
-            font-size: 3rem;
-            font-style: italic;
-            display: block;
-            margin: 10px 0;
-        }
-
-        /* قسم التفاصيل */
-        .details-card {
-            background-color: var(--bg-white);
-            padding: 60px 40px;
-            margin: 40px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border: 1px solid rgba(212, 196, 168, 0.3);
-        }
-
-        .date-title {
-            font-size: 2rem;
-            color: var(--text-main);
-            margin-bottom: 10px;
-        }
-
-        .date-text {
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            color: var(--accent-dark-beige);
-            margin-bottom: 40px;
-        }
-
-        /* العداد التنازلي */
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .time-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 70px;
-        }
-
-        .time-box span.number {
             font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
-            color: var(--text-main);
+            margin: 30px 0;
+            line-height: 1.4;
+            color: #333;
         }
 
-        .time-box span.label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-dark-beige);
-            margin-top: 5px;
+        .details {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #555;
         }
 
-        /* قسم المكان */
-        .location {
-            margin-top: 30px;
+        /* أيقونات الورد */
+        .flower-top {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            opacity: 0.6;
         }
 
-        .location-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .btn-maps {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 35px;
-            background-color: var(--accent-beige);
-            color: var(--bg-white);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            border: 1px solid var(--accent-beige);
-        }
-
-        .btn-maps:hover {
-            background-color: transparent;
-            color: var(--accent-dark-beige);
-        }
-
-        /* الفوتر */
-        footer {
-            padding: 40px 20px;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            color: var(--accent-dark-beige);
-            text-transform: uppercase;
-        }
-
-        /* استجابة الموبايل */
-        @media (max-width: 600px) {
-            .names { font-size: 2.5rem; }
-            .details-card { padding: 40px 20px; }
-            .countdown { gap: 10px; }
-            .time-box span.number { font-size: 1.8rem; }
+        .flower-bottom {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 100px;
+            opacity: 0.6;
+            transform: rotate(180deg);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="hero">
-            <p class="pre-title">We are getting married</p>
-            <h1 class="names">
-                Zyad Nasser
-                <span class="ampersand">&</span>
+    <div class="card">
+        <!-- الخلفية المائية -->
+        <svg class="watermark" viewBox="0 0 100 100">
+            <path d="M50 0 C 80 0, 100 20, 100 50 C 100 80, 80 100, 50 100 C 20 100, 0 80, 0 50 C 0 20, 20 0, 50 0 Z" fill="#8E7C5E"/>
+        </svg>
+
+        <!-- زينة الورد -->
+        <svg class="flower-top" viewBox="0 0 24 24" fill="#8E7C5E">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z"/>
+        </svg>
+        <svg class="flower-bottom" viewBox="0 0 24 24" fill="#8E7C5E">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z"/>
+        </svg>
+
+        <div class="content">
+            <p>You are cordially invited to celebrate the marriage of</p>
+            <div class="names">
+                Zyad Nasser<br>
+                <span style="font-size: 1.5rem; color: #8E7C5E;">&</span><br>
                 Mariam Sherif
-            </h1>
-        </header>
-
-        <section class="details-card">
-            <h2 class="date-title">Save The Date</h2>
-            <p class="date-text">JULY 10, 2026</p>
-
-            <div class="countdown" id="countdown">
-                <div class="time-box">
-                    <span class="number" id="days">00</span>
-                    <span class="label">Days</span>
-                </div>
-                <div class="time-box">
-                    <span class="number" id="hours">00</span>
-                    <span class="label">Hours</span>
-                </div>
-                <div class="time-box">
-                    <span class="number" id="minutes">00</span>
-                    <span class="label">Mins</span>
-                </div>
-                <div class="time-box">
-                    <span class="number" id="seconds">00</span>
-                    <span class="label">Secs</span>
-                </div>
             </div>
-
-            <div class="location">
-                <h3 class="location-name">Golden Plaza</h3>
-                <p style="font-size: 0.9rem; color: #888;">Celebrate with us at our wedding venue</p>
-                <a href="https://maps.app.goo.gl/AMYfMQbmzNiTB344A?g_st=ac" target="_blank" class="btn-maps">View on Map</a>
+            <div class="details">
+                <p><strong>Golden Plaza</strong></p>
+                <p>Friday, July 10th, 2026</p>
+                <p>8:00 PM</p>
+                <br>
+                <p style="font-style: italic;">We look forward to celebrating with you.</p>
             </div>
-        </section>
+        </div>
     </div>
 
-    <footer>
-        <p>Z & M • 2026</p>
-    </footer>
-
-    <script>
-        // تحديد تاريخ الفرح
-        const weddingDate = new Date("July 10, 2026 18:00:00").getTime();
-
-        const updateCountdown = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            // حساب الأيام، الساعات، الدقائق والثواني
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // عرض الأرقام في الـ HTML
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            // لو التايمر خلص (جه يوم الفرح)
-            if (distance < 0) {
-                clearInterval(updateCountdown);
-                document.getElementById("countdown").innerHTML = "<h3 style='font-family: Playfair Display; color: #D4C4A8; margin-top: 20px;'>Today is the Big Day!</h3>";
-            }
-        }, 1000);
-    </script>
 </body>
 </html>
+```eof
+
+### نصايح أخيرة يا عريس:
+1.  **طريقة الطباعة:** افتح الملف في المتصفح، دوس `Ctrl + P` (أو `Cmd + P` على الماك).
+2.  **إعدادات المتصفح:** تأكد إنك مفعل خيار **"Background Graphics"** (عشان يطبع الألوان والخلفية المائية)، واختار المقاس A5.
+3.  **نوع الورق:** عشان تطلع فخمة بجد، اطبعها على **ورق مقوى (Cardstock)**، وزنه لا يقل عن 250 أو 300 جرام.
+
+ألف مبروك، ولو محتاج أي تعديل في التصميم أنا معاك!
