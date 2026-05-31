@@ -4,85 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zyad & Mariam - Wedding Invitation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-color: #FAF9F6;
-            --white: #FFFFFF;
             --text-color: #4A4A4A;
             --accent-color: #C3B091;
-            --dark-accent: #8E7C5E;
-            --watermark: rgba(195, 176, 145, 0.15); /* لون العلامة المائية */
+            --watermark: rgba(195, 176, 145, 0.15);
         }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
-            overflow-x: hidden;
-        }
+        body { margin: 0; background-color: var(--bg-color); font-family: 'Montserrat', sans-serif; text-align: center; color: var(--text-color); }
 
-        /* خلفية العلامة المائية (القلب الكبير والقلوب الصغيرة) */
+        /* طبقة القلوب الصغيرة كعلامة مائية في كل الصفحات */
         .watermark-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none; opacity: 0.6;
         }
 
-        /* باقي التنسيقات الأصلية للموقع */
-        .content-wrapper { position: relative; z-index: 1; }
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
-        .names { font-family: 'Playfair Display', serif; font-size: 4.5rem; color: var(--text-color); margin: 10px 0; }
-        .and { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3rem; color: var(--accent-color); }
-        .divider { width: 60px; height: 2px; background-color: var(--accent-color); margin: 30px auto; }
-        .details-section, .location-section { padding: 80px 20px; }
-        .map-btn { display: inline-block; margin-top: 30px; padding: 16px 45px; background-color: var(--accent-color); color: var(--white); text-decoration: none; border-radius: 30px; }
-        
-        @media (max-width: 600px) { .names { font-size: 3rem; } }
+        .content { position: relative; z-index: 1; padding: 50px 20px; }
+
+        /* ستايل القلب الكبير في الصفحة الأولى */
+        .heart-container {
+            position: relative; width: 300px; height: 350px; margin: 0 auto;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .heart-svg { position: absolute; width: 100%; height: 100%; z-index: -1; }
+
+        .names { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 10px 0; }
+        .wreath { width: 100px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- طبقة العلامة المائية الجديدة -->
+    <!-- القلوب الصغيرة (علامة مائية) -->
     <svg class="watermark-layer" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <!-- القلب الكبير المفرغ بفرشة خفيفة -->
-        <path d="M50,30 Q70,10 90,30 Q90,50 50,80 Q10,50 10,30 Q30,10 50,30 Z" fill="none" stroke="var(--watermark)" stroke-width="0.5" stroke-dasharray="2 1"/>
-        <!-- الأسماء داخل القلب -->
-        <text x="50" y="45" font-family="'Playfair Display', serif" font-size="8" fill="var(--watermark)" text-anchor="middle">Z & M</text>
-        
-        <!-- قلوب صغيرة متفرقة بحرف Z و M -->
-        <text x="20" y="20" font-size="4" fill="var(--watermark)">Z</text>
-        <text x="80" y="80" font-size="4" fill="var(--watermark)">M</text>
-        <text x="15" y="70" font-size="3" fill="var(--watermark)">Z</text>
-        <text x="85" y="25" font-size="3" fill="var(--watermark)">M</text>
+        <text x="10" y="20" font-size="5" fill="var(--watermark)">Z</text>
+        <text x="90" y="80" font-size="5" fill="var(--watermark)">M</text>
+        <text x="80" y="10" font-size="3" fill="var(--watermark)">Z</text>
+        <text x="20" y="90" font-size="3" fill="var(--watermark)">M</text>
     </svg>
 
-    <div class="content-wrapper">
-        <section class="hero">
+    <div class="content">
+        <!-- الصفحة الأولى: القلب الكبير والأسماء -->
+        <section class="heart-container">
+            <svg class="heart-svg" viewBox="0 0 100 100" fill="none">
+                <path d="M50,20 Q75,0 90,30 Q90,60 50,90 Q10,60 10,30 Q25,0 50,20 Z" 
+                      stroke="var(--accent-color)" stroke-width="0.5" stroke-dasharray="2 2" />
+            </svg>
+            
+            <!-- الوردة فوق الأسماء -->
+            <svg class="wreath" viewBox="0 0 100 50">
+                <circle cx="50" cy="25" r="10" fill="var(--accent-color)"/>
+            </svg>
+            
+            <div>We are getting married</div>
             <div class="names">Zyad Nasser</div>
-            <div class="and">&</div>
+            <div>&</div>
             <div class="names">Mariam Sherif</div>
-            <div class="divider"></div>
+            <div style="margin-top: 10px;">10 . 07 . 2026</div>
         </section>
 
-        <section class="details-section">
-            <p style="font-size: 1.5rem; font-weight: 500;">Friday, July 10, 2026</p>
-            <p style="color: var(--dark-accent);">AT 8:00 PM</p>
-        </section>
-
-        <section class="location-section">
-            <h2 style="font-family: 'Playfair Display', serif;">Golden Plaza</h2>
-            <a href="https://maps.app.goo.gl/AMYfMQbmzNiTB344A?g_st=ac" target="_blank" class="map-btn">Open in Maps</a>
+        <!-- باقي الأقسام -->
+        <section style="margin-top: 100px;">
+            <h2>Save The Date</h2>
+            <p>Friday, July 10, 2026 | 8:00 PM</p>
+            <h3>Golden Plaza</h3>
         </section>
     </div>
 
