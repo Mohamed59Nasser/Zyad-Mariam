@@ -16,7 +16,6 @@
 
         body { margin: 0; background-color: var(--bg-color); font-family: 'Montserrat', sans-serif; text-align: center; color: var(--text-color); }
 
-        /* طبقة القلوب الصغيرة الموزعة في كل الصفحات */
         .watermark-layer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0; pointer-events: none; opacity: 0.8;
@@ -24,7 +23,6 @@
 
         .content { position: relative; z-index: 1; padding: 50px 20px; }
 
-        /* ستايل القلب الكبير */
         .heart-container {
             position: relative; width: 300px; height: 350px; margin: 0 auto;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -34,13 +32,15 @@
         .names { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 10px 0; }
         .wreath { width: 100px; margin-bottom: 10px; }
         
-        .section { margin-top: 100px; padding: 50px 0; }
+        .section { margin-top: 80px; }
+        .countdown { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .time-box { background: rgba(255,255,255,0.5); padding: 10px; border-radius: 10px; min-width: 60px; }
+        
         .map-btn { display: inline-block; margin-top: 20px; padding: 15px 30px; background-color: var(--accent-color); color: #FFF; text-decoration: none; border-radius: 25px; }
     </style>
 </head>
 <body>
 
-    <!-- القلوب الصغيرة (Z & M) موزعة كعلامة مائية -->
     <svg class="watermark-layer" viewBox="0 0 100 100" preserveAspectRatio="none">
         <text x="5" y="10" font-size="3" fill="var(--watermark)">Z</text>
         <text x="95" y="15" font-size="3" fill="var(--watermark)">M</text>
@@ -51,7 +51,6 @@
     </svg>
 
     <div class="content">
-        <!-- الصفحة الأولى -->
         <section class="heart-container">
             <svg class="heart-svg" viewBox="0 0 100 100" fill="none">
                 <path d="M50,20 Q75,0 90,30 Q90,60 50,90 Q10,60 10,30 Q25,0 50,20 Z" 
@@ -67,10 +66,14 @@
             <div style="margin-top: 10px;">10 . 07 . 2026</div>
         </section>
 
-        <!-- باقي تفاصيل الفرح -->
         <section class="section">
             <h2>Save The Date</h2>
-            <p>Friday, July 10, 2026 | 8:00 PM</p>
+            <div class="countdown" id="timer">
+                <div class="time-box"><div id="days">00</div>Days</div>
+                <div class="time-box"><div id="hours">00</div>Hrs</div>
+                <div class="time-box"><div id="minutes">00</div>Mins</div>
+                <div class="time-box"><div id="seconds">00</div>Secs</div>
+            </div>
         </section>
 
         <section class="section">
@@ -79,5 +82,16 @@
         </section>
     </div>
 
+    <script>
+        const weddingDate = new Date("July 10, 2026 20:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+            document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
+            document.getElementById("hours").innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+            document.getElementById("minutes").innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
+            document.getElementById("seconds").innerText = Math.floor((diff % (1000*60)) / 1000);
+        }, 1000);
+    </script>
 </body>
 </html>
