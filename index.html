@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zyad & Mariam | Wedding Invitation</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=300;400;500&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-color: #FCFBF9;     
             --text-main: #3E3B38;    
             --accent-color: #D3C5B0; /* Matte Gold */
-            --rose-color: #C98B8B;   /* Rose Gold */
+            --gold-color: #C5A880;   /* Premium Gold */
         }
 
         html, body {
@@ -62,7 +61,7 @@
             font-size: 3.5rem;
             font-style: italic;
             font-weight: 500;
-            color: var(--rose-color);
+            color: var(--gold-color);
         }
 
         @keyframes pulseIntro {
@@ -85,8 +84,8 @@
         /* --- Corner Vine SVGs --- */
         .corner-svg {
             position: absolute;
-            width: 250px;
-            height: 250px;
+            width: 260px;
+            height: 260px;
             pointer-events: none;
             z-index: 10;
             overflow: visible;
@@ -107,10 +106,10 @@
             animation: floatUp linear forwards;
         }
         @keyframes floatUp {
-            0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 0; }
-            15% { opacity: 0.6; }
-            85% { opacity: 0.6; }
-            100% { transform: translateY(-115vh) scale(1.1) rotate(30deg); opacity: 0; }
+            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.5; }
+            85% { opacity: 0.5; }
+            100% { transform: translateY(-115vh) scale(1.1) rotate(45deg); opacity: 0; }
         }
 
         /* --- Main Layout --- */
@@ -277,83 +276,71 @@
             .section-title { font-size: 2.2rem; }
             .countdown-container { gap: 12px; }
             .time-num { font-size: 2.2rem; }
-            .corner-svg { width: 140px; height: 140px; } 
+            .corner-svg { width: 150px; height: 150px; } 
         }
     </style>
 </head>
 <body>
 
-    <!-- SVG Definitions -->
     <svg style="display: none;">
         <defs>
-            <!-- فروع الأركان المتصلة الجميلة (مستمرة كما هي بدون تغيير) -->
-            <g id="botanical-corner">
-                <path d="M0,0 Q30,10 60,40 T120,120 T150,200 T160,250" fill="none" stroke="var(--rose-color)" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M60,40 Q100,30 140,50" fill="none" stroke="var(--rose-color)" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M120,120 Q180,120 200,160" fill="none" stroke="var(--rose-color)" stroke-width="1.8" stroke-linecap="round"/>
-                
-                <!-- وردة الأركان الكبيرة -->
-                <g transform="translate(120, 120) scale(0.9)">
-                    <circle cx="0" cy="0" r="14" fill="var(--bg-color)" stroke="var(--rose-color)" stroke-width="1.5"/>
-                    <path d="M-10,-5 C-15,-15 15,-15 10,-5 C15,10 -15,10 -10,-5 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
-                    <path d="M-6,-3 C-9,-10 9,-10 6,-3 C9,6 -9,6 -6,-3 Z" fill="none" stroke="var(--rose-color)" stroke-width="1"/>
-                    <circle cx="0" cy="0" r="3" fill="var(--rose-color)"/>
-                </g>
-
-                <!-- وردة الأركان المتوسطة -->
-                <g transform="translate(140, 50) scale(0.7)">
-                    <circle cx="0" cy="0" r="12" fill="var(--bg-color)" stroke="var(--rose-color)" stroke-width="1.5"/>
-                    <path d="M-8,-4 C-12,-12 12,-12 8,-4 C12,8 -12,8 -8,-4 Z" fill="none" stroke="var(--rose-color)" stroke-width="1"/>
-                    <circle cx="0" cy="0" r="2.5" fill="var(--rose-color)"/>
-                </g>
-
-                <!-- برعم صغير في الركن -->
-                <g transform="translate(200, 160) scale(0.6)">
-                    <path d="M0,0 C10,-15 -10,-15 0,0 Z" fill="var(--bg-color)" stroke="var(--rose-color)" stroke-width="1.5"/>
-                    <path d="M-5,-7 C0,-18 5,-7 0,0" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
-                </g>
-
-                <!-- أوراق شجر الأركان -->
-                <path d="M20,7 C35,2 40,15 20,7 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
-                <path d="M85,65 C105,55 110,75 85,65 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
-                <path d="M140,165 C165,165 160,185 140,165 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
+            <g id="premium-flower">
+                <path d="M0,-15 C-8,-25 8,-25 0,-15" fill="none" stroke="var(--gold-color)" stroke-width="1.3"/>
+                <path d="M0,15 C-8,25 8,25 0,15" fill="none" stroke="var(--gold-color)" stroke-width="1.3"/>
+                <path d="-15,0 C-25,-8 -25,8 -15,0" fill="none" stroke="var(--gold-color)" stroke-width="1.3"/>
+                <path d="M15,0 C25,-8 25,8 15,0" fill="none" stroke="var(--gold-color)" stroke-width="1.3"/>
+                <path d="-10,-10 C-18,-18 -2,-18 -10,-10" fill="none" stroke="var(--gold-color)" stroke-width="1.2"/>
+                <path d="M10,10 C18,18 2,18 10,10" fill="none" stroke="var(--gold-color)" stroke-width="1.2"/>
+                <path d="-10,10 C-18,18 -18,2 -10,10" fill="none" stroke="var(--gold-color)" stroke-width="1.2"/>
+                <path d="M10,-10 C18,-18 18,-2 10,-10" fill="none" stroke="var(--gold-color)" stroke-width="1.2"/>
+                <circle cx="0" cy="0" r="4" fill="var(--bg-color)" stroke="var(--gold-color)" stroke-width="1.3"/>
+                <circle cx="0" cy="0" r="1.5" fill="var(--gold-color)"/>
             </g>
 
-            <!-- قالب القلب النظيف للهيدر والقلوب الطائرة -->
+            <g id="botanical-corner">
+                <path d="M0,0 Q40,15 80,50 T140,140 T170,220 T180,260" fill="none" stroke="var(--gold-color)" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M80,50 Q120,40 160,60" fill="none" stroke="var(--gold-color)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M140,140 Q190,145 210,180" fill="none" stroke="var(--gold-color)" stroke-width="1.5" stroke-linecap="round"/>
+                
+                <use href="#premium-flower" transform="translate(140, 140) scale(1.1)"/>
+                <use href="#premium-flower" transform="translate(160, 60) scale(0.85)"/>
+                <use href="#premium-flower" transform="translate(210, 180) scale(0.7)"/>
+
+                <path d="M30,12 C45,5 50,20 30,12 Z" fill="none" stroke="var(--gold-color)" stroke-width="1.2"/>
+                <path d="M105,80 C125,70 130,90 105,80 Z" fill="none" stroke="var(--gold-color)" stroke-width="1.2"/>
+                <path d="M165,185 C190,185 185,205 165,185 Z" fill="none" stroke="var(--gold-color)" stroke-width="1.2"/>
+            </g>
+
             <g id="base-heart">
-                <path d="M50,30 Q65,12 80,30 Q80,52 50,78 Q20,52 20,30 Q35,12 50,30 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.8"/>
+                <path d="M50,30 Q65,12 80,30 Q80,52 50,78 Q20,52 20,30 Q35,12 50,30 Z" fill="none" stroke="var(--gold-color)" stroke-width="1.8"/>
             </g>
         </defs>
     </svg>
 
-    <!-- شاشة التحميل -->
     <div id="preloader">
         <div class="preloader-content">
             <div class="preloader-title">Zyad & Mariam</div>
-            <div class="preloader-subtitle">Wedding Invitation</div>
+            <div class="preloader-subtitle" style="color: var(--accent-color); letter-spacing: 3px; font-size: 0.8rem; text-transform: uppercase; margin-top: 5px;">Wedding Invitation</div>
         </div>
     </div>
 
-    <!-- المحتوى الرئيسي للموقع -->
     <div id="main-content">
         
-        <!-- فروع الورد الثابتة الأنيقة بالأركان الأربعة -->
-        <svg class="corner-svg top-left" viewBox="0 0 250 250"><use href="#botanical-corner"/></svg>
-        <svg class="corner-svg top-right" viewBox="0 0 250 250"><use href="#botanical-corner"/></svg>
-        <svg class="corner-svg bottom-left" viewBox="0 0 250 250"><use href="#botanical-corner"/></svg>
-        <svg class="corner-svg bottom-right" viewBox="0 0 250 250"><use href="#botanical-corner"/></svg>
+        <svg class="corner-svg top-left" viewBox="0 0 260 260"><use href="#botanical-corner"/></svg>
+        <svg class="corner-svg top-right" viewBox="0 0 260 260"><use href="#botanical-corner"/></svg>
+        <svg class="corner-svg bottom-left" viewBox="0 0 260 260"><use href="#botanical-corner"/></svg>
+        <svg class="corner-svg bottom-right" viewBox="0 0 260 260"><use href="#botanical-corner"/></svg>
 
-        <!-- الهيدر الرئيسي -->
         <section class="hero">
             <div class="vintage-header">
                 <svg class="header-heart" viewBox="0 0 100 100">
                     <use href="#base-heart"/>
-                    <text x="50" y="49" font-family="'Montserrat', sans-serif" font-size="16" font-weight="500" text-anchor="middle" fill="var(--rose-color)">Z</text>
+                    <text x="50" y="49" font-family="'Montserrat', sans-serif" font-size="16" font-weight="500" text-anchor="middle" fill="var(--gold-color)">Z</text>
                 </svg>
-                <span class="vintage-title">Vintage Rose</span>
+                <span class="vintage-title" style="color: var(--text-main);">Gold Elegance</span>
                 <svg class="header-heart" viewBox="0 0 100 100">
                     <use href="#base-heart"/>
-                    <text x="50" y="49" font-family="'Montserrat', sans-serif" font-size="16" font-weight="500" text-anchor="middle" fill="var(--rose-color)">M</text>
+                    <text x="50" y="49" font-family="'Montserrat', sans-serif" font-size="16" font-weight="500" text-anchor="middle" fill="var(--gold-color)">M</text>
                 </svg>
             </div>
             
@@ -366,7 +353,6 @@
             </div>
         </section>
 
-        <!-- العداد التنازلي -->
         <section class="section">
             <p class="pre-title">The Countdown</p>
             <h2 class="section-title">July 10, 2026</h2>
@@ -391,7 +377,6 @@
             </div>
         </section>
 
-        <!-- تفاصيل القاعة -->
         <section class="section">
             <p class="pre-title">Location & Venue</p>
             <h2 class="serif-italic" style="font-size: 3.2rem; margin-bottom: 20px; font-weight: 500;">Golden Plaza</h2>
@@ -434,7 +419,7 @@
             document.getElementById("secs").innerText  = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // --- كود توليد القلوب الطائرة فقط (تم إلغاء الورد الغريب تماماً) ---
+        // --- كود توليد القلوب والزهور الفخمة الطائرة بالتبادل حركياً ---
         let letterToggle = true; 
 
         function spawnFloatingElement() {
@@ -443,28 +428,38 @@
             
             const leftPos = Math.random() * 85 + 5; 
             const duration = Math.random() * 3 + 6;  
-            const size = Math.random() * 10 + 20;    
+            const size = Math.random() * 12 + 22;    
             
             element.style.left = leftPos + 'vw';
             element.style.animationDuration = duration + 's';
             
-            // تحديد الحرف داخل القلب بالتبادل (مرة Z ومرة M)
-            const currentLetter = letterToggle ? 'Z' : 'M';
-            letterToggle = !letterToggle;
-            
-            element.innerHTML = `
-                <svg viewBox="0 0 100 100" width="${size}" height="${size}">
-                    <use href="#base-heart"/>
-                    <text x="50" y="52" font-family="'Playfair Display', serif" font-size="22" font-style="italic" font-weight="600" text-anchor="middle" fill="var(--rose-color)">${currentLetter}</text>
-                </svg>
-            `;
+            // تحديد عشوائي: 50% يظهر قلب بحرف، و 50% تظهر الزهرة الخطية الجديدة بالظبط
+            const spawnType = Math.random() > 0.5 ? 'heart' : 'flower';
+
+            if (spawnType === 'heart') {
+                const currentLetter = letterToggle ? 'Z' : 'M';
+                letterToggle = !letterToggle;
+                
+                element.innerHTML = `
+                    <svg viewBox="0 0 100 100" width="${size}" height="${size}">
+                        <use href="#base-heart"/>
+                        <text x="50" y="52" font-family="'Playfair Display', serif" font-size="22" font-style="italic" font-weight="600" text-anchor="middle" fill="var(--gold-color)">${currentLetter}</text>
+                    </svg>
+                `;
+            } else {
+                element.innerHTML = `
+                    <svg viewBox="-25 -25 50 50" width="${size}" height="${size}">
+                        <use href="#premium-flower"/>
+                    </svg>
+                `;
+            }
             
             document.body.appendChild(element);
             setTimeout(() => { element.remove(); }, duration * 1000);
         }
         
-        // توليد قلب جديد كل 800 مللي ثانية
-        setInterval(spawnFloatingElement, 800);
+        // سرعة توليد العناصر الطائرة
+        setInterval(spawnFloatingElement, 900);
     </script>
 </body>
 </html>
