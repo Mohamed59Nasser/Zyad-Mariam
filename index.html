@@ -12,14 +12,14 @@
     
     <style>
         :root {
-            --bg-color: #FDFDFB;       /* خلفية كريمية ناعمة ونقية */
-            --text-main: #4A4441;      /* لون نص دافئ */
-            --rose-pink: #EAA4A4;      /* الروز الأساسي للورد البلدي */
-            --rose-dark: #C97A7A;      /* ظل الورد العميق */
-            --rose-light: #FBE2E2;     /* إضاءة البتلات الفاتحة */
-            --sage-green: #8FA89B;     /* الأخضر الميرمية لأوراق الشجر */
-            --olive-dark: #6E8577;     /* ظل أوراق الشجر */
-            --soft-tan: #D6C7B7;       /* الفروع الرقيقة الجانبية */
+            --bg-color: #FDFDFB;       
+            --text-main: #4A4441;      
+            --rose-pink: #EAA4A4;      
+            --rose-dark: #C97A7A;      
+            --rose-light: #FBE2E2;     
+            --sage-green: #8FA89B;     
+            --olive-dark: #6E8577;     
+            --soft-tan: #D6C7B7;       
         }
 
         html, body {
@@ -303,10 +303,8 @@
 </head>
 <body>
 
-    <!-- التدرجات اللونية الناعمة لمحاكاة تلوين الألوان المائية للورد والأوراق -->
     <svg style="display: none;">
         <defs>
-            <!-- تدرج الوردة الروز الناعم الداخلي والخارجي -->
             <radialGradient id="watercolorRose" cx="50%" cy="50%" r="50%" fx="40%" fy="40%">
                 <stop offset="0%" style="stop-color: var(--rose-light);" />
                 <stop offset="60%" style="stop-color: var(--rose-pink);" />
@@ -319,42 +317,31 @@
                 <stop offset="100%" style="stop-color: var(--rose-dark);" />
             </radialGradient>
 
-            <!-- تدرج أوراق الشجر الزيتوني والميرمية الناعم -->
             <linearGradient id="watercolorLeaf" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" style="stop-color: var(--olive-dark);" />
                 <stop offset="80%" style="stop-color: var(--sage-green);" />
                 <stop offset="100%" style="stop-color: #DBE6E0;" />
             </linearGradient>
 
-            <!-- 1. تصميم الوردة البلدي المتفتحة بالكامل وبمنحنيات طبيعية انسيابية جداً -->
             <g id="real-rose">
-                <!-- البتلات الخلفية الكبيرة العريضة -->
                 <path d="M-35,-15 C-55,-35 -80,-5 -65,25 C-50,55 -10,65 25,45 C55,25 65,-10 45,-35 C25,-55 -15,-55 -35,-15 Z" fill="url(#watercolorRose)" opacity="0.9"/>
-                <!-- طبقة البتلات الوسطى المتداخلة بتوزيع طبيعي متموج -->
                 <path d="M-40,5 C-55,25 -20,50 10,40 C40,30 50,0 30,-20 C10,-40 -25,-30 -40,5 Z" fill="url(#watercolorRose)"/>
                 <path d="M-25,-15 C-35,-30 5,-40 25,-15 C45,10 20,35 -5,30 C-30,25 -15,0 -25,-15 Z" fill="url(#watercolorRose)" opacity="0.95"/>
-                <!-- قلب الوردة الملتف بتفاصيل البتلات الصغيرة المتراصة بالداخل -->
                 <path d="M-15,-5 C-22,-15 -5,-25 5,-20 C15,-15 22,0 10,15 C0,25 -10,15 -15,-5 Z" fill="url(#watercolorRose)"/>
                 <path d="M-8,-7 C-12,-12 0,-18 5,-12 C10,-7 12,2 5,7 C0,12 -5,3 -8,-7 Z" fill="var(--rose-dark)" opacity="0.4"/>
                 <path d="M-4,-4 C-6,-8 2,-10 4,-6 C6,-2 2,4 -2,2 Z" fill="url(#watercolorBud)"/>
             </g>
 
-            <!-- 2. برعم وردة صغير رقيق جاهز للتفتح -->
             <g id="real-bud">
-                <!-- ورقة الكأس الحاضنة للبرعم -->
                 <path d="M-12,12 C-15,0 -5,-15 0,-25 C5,-15 15,0 12,12 C6,18 -6,18 -12,12 Z" fill="url(#watercolorLeaf)"/>
-                <!-- جسم البرعم الوردي الداخلي -->
                 <path d="M-7,5 C-12,-8 -3,-22 0,-28 C3,-22 12,-8 7,5 C4,10 -4,10 -7,5 Z" fill="url(#watercolorBud)"/>
             </g>
 
-            <!-- 3. ورقة شجر طبيعية انسيابية عريضة ومدببة الطرف -->
             <g id="real-leaf">
                 <path d="M0,0 C-18,-15 -28,-2 0,-40 C28,-2 18,-15 0,0 Z" fill="url(#watercolorLeaf)"/>
-                <!-- خط العرق الرئيسي لورقة الشجر -->
                 <path d="M0,0 Q0,-20 0,-40" fill="none" stroke="#566B5F" stroke-width="0.6" opacity="0.4"/>
             </g>
 
-            <!-- 4. الفروع الصغيرة الجانبية الناعمة وحبيبات اللقاح لتزيين الحواف -->
             <g id="soft-sprig">
                 <path d="M0,0 Q15,-20 30,-25" fill="none" stroke="var(--soft-tan)" stroke-width="1.2" stroke-linecap="round"/>
                 <circle cx="30" cy="-25" r="3.5" fill="var(--soft-tan)"/>
@@ -362,12 +349,8 @@
                 <circle cx="12" cy="-5" r="2.5" fill="var(--soft-tan)"/>
             </g>
 
-            <!-- تجميعة باقة ركن الورد الكاملة بستايل الألوان المائية المتكاثفة في الزوايا -->
+            <!-- تم إزالة خطوط المربع الداخلي المتقاطعة تماماً من هنا لحل مشكلة الصور -->
             <g id="watercolor-corner-bouquet">
-                <!-- إطار داخلي أبيض شفاف خفيف جداً يحدد التصميم برقة -->
-                <rect x="30" y="30" width="360" height="360" fill="none" stroke="var(--soft-tan)" stroke-width="1" opacity="0.3"/>
-
-                <!-- توزيع فروع الشجر الممتدة من الزاوية على طول الحواف الجانبية -->
                 <use href="#real-leaf" transform="translate(130, 45) scale(0.9) rotate(80)"/>
                 <use href="#real-leaf" transform="translate(240, 28) scale(0.7) rotate(95)"/>
                 <use href="#real-leaf" transform="translate(330, 32) scale(0.55) rotate(85)"/>
@@ -376,32 +359,27 @@
                 <use href="#real-leaf" transform="translate(28, 240) scale(0.7) rotate(-5)"/>
                 <use href="#real-leaf" transform="translate(32, 330) scale(0.55) rotate(-15)"/>
 
-                <!-- الفروع الحبيبية التزيينية المنسابة بنعومة خلف الورد -->
                 <use href="#soft-sprig" transform="translate(60, 40) rotate(10)"/>
                 <use href="#soft-sprig" transform="translate(40, 60) rotate(80) scaleX(-1)"/>
                 <use href="#soft-sprig" transform="translate(180, 25) rotate(25) scale(0.8)"/>
                 <use href="#soft-sprig" transform="translate(25, 180) rotate(65) scale(0.8)"/>
 
-                <!-- الورد البلدي الرئيسي الملون المتمركز بكثافة في الزاوية تماماً -->
                 <use href="#real-rose" transform="translate(65, 65) scale(1.1) rotate(15)"/>
                 <use href="#real-rose" transform="translate(155, 50) scale(0.75) rotate(-20)"/>
                 <use href="#real-rose" transform="translate(50, 155) scale(0.75) rotate(55)"/>
 
-                <!-- براعم إضافية ناعمة لتوزيع الألوان المائية الرقيقة -->
                 <use href="#real-bud" transform="translate(210, 35) scale(0.8) rotate(70)"/>
                 <use href="#real-bud" transform="translate(35, 210) scale(0.8) rotate(10)"/>
                 <use href="#real-bud" transform="translate(295, 28) scale(0.65) rotate(80)"/>
                 <use href="#real-bud" transform="translate(28, 295) scale(0.65) rotate(5)"/>
             </g>
 
-            <!-- قالب القلب الطائر المحدث باللون الروز الفاتح الناعم -->
             <g id="watercolor-heart">
                 <path d="M50,30 Q65,12 80,30 Q80,52 50,78 Q20,52 20,30 Q35,12 50,30 Z" fill="none" stroke="var(--rose-pink)" stroke-width="1.5"/>
             </g>
         </defs>
     </svg>
 
-    <!-- شاشة التحميل الفخمة (Preloader) -->
     <div id="preloader">
         <div class="preloader-content">
             <h1 class="preloader-title">Zyad & Mariam</h1>
@@ -409,10 +387,8 @@
         </div>
     </div>
 
-    <!-- كبسولة العرض والمحتوى الأساسي للدعوة -->
     <div id="main-content">
         
-        <!-- إطار الورد المائي المتكامل الموزع على الـ 4 أركان بشكل متناظر وفاخر -->
         <div class="frame-container">
             <svg class="frame-svg top-left" viewBox="0 0 420 420"><use href="#watercolor-corner-bouquet"/></svg>
             <svg class="frame-svg top-right" viewBox="0 0 420 420"><use href="#watercolor-corner-bouquet"/></svg>
@@ -421,7 +397,6 @@
         </div>
 
         <div class="content-wrapper">
-            <!-- هيدر الأحرف الأولى والقلوب الرومانسية -->
             <header style="margin-bottom: 15px;">
                 <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
                     <svg width="35" height="35" viewBox="0 0 100 100">
@@ -438,14 +413,12 @@
             
             <p class="pre-title" style="margin-top: 15px;">Save The Date</p>
             
-            <!-- أسماء العروسين بالخط السيريف الكلاسيكي المائل -->
             <div class="names-column">
                 <h1 class="name-row serif-italic">Zyad Nasser</h1>
                 <span class="ampersand serif-italic">&</span>
                 <h1 class="name-row serif-italic">Mariam Sherif</h1>
             </div>
 
-            <!-- قسم العداد التنازلي التلقائي الدقيق لموعد الفرح -->
             <section class="section">
                 <p class="pre-title">The Countdown</p>
                 <h2 class="section-title">July 10, 2026</h2>
@@ -470,7 +443,6 @@
                 </div>
             </section>
 
-            <!-- قاعة الحفل وتفاصيل المكان والزر الكبسولي -->
             <section class="section">
                 <p class="pre-title">Location & Venue</p>
                 <h2 class="serif-italic" style="font-size: 3rem; margin: 10px 0 25px 0; font-weight: 400; color: var(--text-main);">Golden Plaza</h2>
@@ -491,7 +463,6 @@
     </div>
 
     <script>
-        // أنميشن إخفاء الشاشة الترحيبية وظهور الدعوة بسلاسة
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 document.getElementById('preloader').classList.add('hidden');
@@ -499,7 +470,6 @@
             }, 2200); 
         });
 
-        // تشغيل العداد التنازلي المباشر حتى يوم الفرح
         const targetDate = new Date("July 10, 2026 20:00:00").getTime();
         const timerInterval = setInterval(() => {
             const now = new Date().getTime();
@@ -516,7 +486,6 @@
             document.getElementById("secs").innerText  = Math.floor((difference % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // جافا سكريبت لتوليد بتلات الورد الروز والقلوب الناعمة لتتطاير في الخلفية بشكل جمالي هادئ
         let charToggle = true; 
 
         function createFloatingParticle() {
@@ -524,13 +493,14 @@
             particle.classList.add('floating-element');
             
             const randomX = Math.random() * 80 + 10; 
-            const speed = Math.random() * 4 + 8;     
-            const pixelSize = Math.random() * 10 + 20; 
+            const speed = Math.random() * 4 + 7;     
+            const pixelSize = Math.random() * 10 + 22; 
             
             particle.style.left = randomX + 'vw';
             particle.style.animationDuration = speed + 's';
             
-            const choice = Math.random() > 0.5 ? 'rose' : 'heart';
+            // تم زيادة احتمالية ظهور القلوب ذات الأحرف لتصبح 75% مقارنة بالورد العادي
+            const choice = Math.random() > 0.25 ? 'heart' : 'rose';
 
             if (choice === 'rose') {
                 particle.innerHTML = `
@@ -554,8 +524,8 @@
             setTimeout(() => { particle.remove(); }, speed * 1000);
         }
         
-        // تشغيل تأثير جزيئات الخلفية الهادئة بالتناوب كل ثانية ونصف تقريباً لمنع الازدحام البصري
-        setInterval(createFloatingParticle, 1400);
+        // تم تقليص وقت التوليد إلى 700ms لتسريع ظهور وتطاير القلوب بكثافة أكبر في الخلفية
+        setInterval(createFloatingParticle, 700);
     </script>
 </body>
 </html>
