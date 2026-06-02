@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zyad & Mariam | Wedding Invitation</title>
     
-    <!-- خطوط جوجل الفخمة -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #FCFBF9;     
-            --text-main: #3E3B38;    
-            --accent-color: #D3C5B0; /* اللون البيج الدافئ المطابق للصورة */
-            --flower-petal: #F5F1EA; /* لون بتلات الورد المتناسق */
+            --bg-color: #FCFBF9;     /* لون الخلفية الكريمي الملكي */
+            --text-main: #3E3B38;    /* لون النص الدافي */
+            --accent-color: #D3C5B0; /* لون البيج الدهبي المطفي للورد والأزرار */
+            --flower-white: #F9F7F5; /* لون بتلات الورد الداخلي */
         }
 
         * {
@@ -35,7 +34,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 1. حل مشكلة شاشة التحميل (الأسماء في سطر واحد دائمًا) --- */
+        /* --- 1. شاشة التحميل (Preloader) بنفس الفونت الموحد --- */
         #preloader {
             position: fixed;
             top: 0;
@@ -54,9 +53,10 @@
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             font-style: italic;
+            font-weight: 500;
             color: var(--accent-color);
             opacity: 0;
-            white-space: nowrap; /* تمنع نزول الأسماء تحت بعضها */
+            white-space: nowrap;
             transform: scale(0.95);
             animation: pulseIntro 2.2s forwards ease-in-out;
         }
@@ -82,34 +82,24 @@
             opacity: 1;
         }
 
-        /* --- 2. حل مشكلة توزيع الورد (ممتد بطول الموقع كله ومستوحى من image_48b5c7.png) --- */
-        .global-floral-frame {
+        /* --- 2. باقات الورد المستقلة الفخمة (مش ممتدة بطول الموقع) --- */
+        .floral-bouquet {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .floral-branch {
-            position: absolute;
-            width: 160px;
+            width: 180px;
             height: auto;
+            pointer-events: none;
+            z-index: 3;
         }
+        /* باقات الورد في زوايا البداية وزوايا النهاية فقط */
+        .bouquet-top-left     { top: 15px; left: 15px; }
+        .bouquet-top-right    { top: 15px; right: 15px; transform: scaleX(-1); }
+        .bouquet-bottom-left  { bottom: 15px; left: 15px; transform: scaleY(-1); }
+        .bouquet-bottom-right { bottom: 15px; right: 15px; transform: scale(-1, -1); }
 
-        /* توزيع فروع الورد المليئة بالبتلات على مسافات مختلفة بطول الـ Scroll */
-        .branch-top-left     { top: 2%; left: -20px; }
-        .branch-top-right    { top: 5%; right: -20px; transform: scaleX(-1); }
-        .branch-mid-left     { top: 35%; left: -30px; transform: scaleY(-1); }
-        .branch-mid-right    { top: 50%; right: -20px; transform: scale(-1, -1); }
-        .branch-bottom-left  { bottom: 15%; left: -15px; }
-        .branch-bottom-right { bottom: 2%; right: -20px; transform: scaleX(-1); }
-
-        /* --- 3. تصميم الأسماء جوه الموقع (حل مشكلة النزول تحت بعض) --- */
-        h1, h2, h3, .serif-font {
+        /* --- 3. تصميم وبنية الأسماء المظبوطة بالمللي --- */
+        .serif-italic {
             font-family: 'Playfair Display', serif;
+            font-style: italic;
             font-weight: 400;
         }
 
@@ -123,51 +113,42 @@
             position: relative;
         }
 
-        .top-crest {
-            margin-bottom: 20px;
-        }
-        .top-crest svg {
-            width: 45px;
-            height: 45px;
-        }
-
         .pre-title {
             font-size: 0.8rem;
             letter-spacing: 6px;
             text-transform: uppercase;
             color: var(--accent-color);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            font-weight: 400;
         }
 
-        /* حاوية الأسماء مصممة كـ Row مرن يمنع الـ Wrapping */
-        .names-row {
+        /* حاوية الأسماء فوق بعضها مع بقاء الاسم الثنائي في نفس السطر */
+        .names-column {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            white-space: nowrap; 
-            width: 100%;
-            max-width: 100vw;
-            padding: 0 15px;
+            gap: 10px;
         }
 
-        .name {
-            font-size: 4.8rem;
+        .name-row {
+            font-size: 4.5rem;
             color: var(--text-main);
-            letter-spacing: -1px;
+            white-space: nowrap; /* تضمن إن "زياد ناصر" يفضلوا جمب بعض دايماً */
+            line-height: 1.2;
+            letter-spacing: -0.5px;
         }
 
         .ampersand {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
-            font-style: italic;
+            font-size: 3.5rem;
             color: var(--accent-color);
+            margin: 5px 0;
+            line-height: 1;
         }
 
         /* الأقسام والعداد */
         .section {
-            padding: 90px 20px;
+            padding: 100px 20px;
             max-width: 650px;
             margin: 0 auto;
             position: relative;
@@ -175,9 +156,11 @@
         }
 
         .section-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
             font-size: 2.8rem;
             color: var(--text-main);
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .countdown-container {
@@ -191,13 +174,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 70px;
+            width: 75px;
         }
 
         .time-num {
             font-size: 3rem;
+            font-weight: 300;
             line-height: 1;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .time-label {
@@ -209,8 +193,8 @@
 
         .btn-capsule {
             display: inline-block;
-            margin-top: 20px;
-            padding: 15px 40px;
+            margin-top: 25px;
+            padding: 16px 45px;
             background-color: var(--accent-color);
             color: #FFFFFF;
             text-decoration: none;
@@ -230,7 +214,7 @@
             box-shadow: none;
         }
 
-        /* تأثير القلوب الخلفية */
+        /* تأثير القلوب الطائرة الخلفية بـ Z & M */
         .floating-heart {
             position: fixed;
             bottom: -60px;
@@ -246,7 +230,7 @@
         }
 
         footer {
-            padding: 60px 20px;
+            padding: 80px 20px;
             font-size: 0.75rem;
             letter-spacing: 4px;
             color: #A09E9A;
@@ -255,140 +239,73 @@
             z-index: 2;
         }
 
-        /* --- شاشات الموبايل (Responsive وبدون أي كسر للأسماء) --- */
+        /* تجاوب كامل مع الموبايل عشان الأسماء متضربش */
         @media (max-width: 768px) {
-            .preloader-content {
-                font-size: 6.5vw; /* يصغر تلقائيًا ليناسب عرض الشاشة تمامًا */
-            }
-            .names-row {
-                gap: 8px;
-            }
-            .name { 
-                font-size: 7.5vw; /* مقاس ديناميكي يضمن بقاء الاسمين جمب بعض على الموبايل */
-            }
-            .ampersand { 
-                font-size: 6.5vw; 
-            }
+            .preloader-content { font-size: 7vw; }
+            .name-row { font-size: 9.5vw; } /* حجم ديناميكي ممتاز للموبايل يحافظ على الكلمتين جمب بعض */
+            .ampersand { font-size: 8vw; }
             .section-title { font-size: 2.2rem; }
-            .countdown-container { gap: 12px; }
+            .countdown-container { gap: 15px; }
             .time-num { font-size: 2.2rem; }
-            .floral-branch { width: 105px; } /* تصغير الفروع على الموبايل عشان متبهدلش التصميم */
+            .floral-bouquet { width: 120px; } /* تصغير الباقات على الموبايل لتوفير مساحة راقية */
         }
     </style>
 </head>
 <body>
 
-    <!-- التوصيف المشترك للوردة والغصن المطابق لـ image_48b5c7.png لإعادة استخدامه كود نقي -->
     <svg style="display: none;">
-        <g id="boho-flower-src">
-            <!-- 8 بتلات دائرية رقيقة متناسقة حول المركز -->
-            <path d="M0,0 C-4,-10 4,-10 0,0" fill="var(--flower-petal)" stroke="var(--accent-color)" stroke-width="0.6" transform="rotate(0)"/>
-            <path d="M0,0 C-4,-10 4,-10 0,0" fill="var(--flower-petal)" stroke="var(--accent-color)" stroke-width="0.6" transform="rotate(45)"/>
-            <path d="M0,0 C-4,-10 4,-10 0,0" fill="var(--flower-petal)" stroke="var(--accent-color)" stroke-width="0.6" transform="rotate(90)"/>
-            <path d="M0,0 C-4,-10 4,-10 0,0" fill="var(--flower-petal)" stroke="var(--accent-color)" stroke-width="0.6" transform="rotate(135)"/>
-            <path d="M0,0 C-4,-10 4,-10 0,0" fill="var(--flower-petal)" stroke="var(--accent-color)" stroke-width="0.6" transform="rotate(180)"/>
-            <path d="M0,0 C-4,-10 4,-10 0,0" fill="var(--flower-petal)" stroke="var(--accent-color)" stroke-width="0.6" transform="rotate(225)"/>
-            <path d="M0,0 C-4,-10 4,-10 0,0" fill="var(--flower-petal)" stroke="var(--accent-color)" stroke-width="0.6" transform="rotate(270)"/>
-            <path d="M0,0 C-4,-10 4,-10 0,0" fill="var(--flower-petal)" stroke="var(--accent-color)" stroke-width="0.6" transform="rotate(315)"/>
-            <!-- سنتر الوردة الدائري بلون دافئ -->
-            <circle cx="0" cy="0" r="3.5" fill="var(--accent-color)" />
-        </g>
-        <g id="boho-leaf-src">
-            <path d="M0,0 C-4,-6 0,-10 0,-10 C0,-10 4,-6 0,0 Z" fill="var(--flower-petal)" stroke="var(--accent-color)" stroke-width="0.5"/>
+        <g id="luxury-rose">
+            <path d="M-10,-10 C-20,-5 -25,10 -10,15 C5,20 15,5 0,-10 Z" fill="#E2D9CB" opacity="0.7"/>
+            <path d="M10,-10 C20,-5 25,10 10,15 C-5,20 -15,5 0,-10 Z" fill="#E2D9CB" opacity="0.7"/>
+            <circle cx="0" cy="-12" r="10" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7"/>
+            <circle cx="12" cy="-5" r="10" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7"/>
+            <circle cx="12" cy="7" r="10" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7"/>
+            <circle cx="0" cy="12" r="10" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7"/>
+            <circle cx="-12" cy="7" r="10" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7"/>
+            <circle cx="-12" cy="-5" r="10" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7"/>
+            <circle cx="-6" cy="-6" r="9" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.5"/>
+            <circle cx="6" cy="6" r="9" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.5"/>
+            <circle cx="0" cy="0" r="5" fill="var(--accent-color)"/>
         </g>
     </svg>
 
-    <!-- 1. شاشة التحميل المعالجة من مشكلة الكسر -->
     <div id="preloader">
         <div class="preloader-content">Zyad & Mariam</div>
     </div>
 
     <div id="main-content">
         
-        <!-- 2. شبكة الورد الممتدة يمين ويسار بطول الموقع كله (مستوحى بالكامل من صورتك) -->
-        <div class="global-floral-frame">
-            <!-- فرع علوي يسار -->
-            <svg class="floral-branch branch-top-left" viewBox="0 0 120 200" fill="none">
-                <path d="M10,0 Q30,60 10,140 T80,200" stroke="var(--accent-color)" stroke-width="1" />
-                <path d="M20,40 Q50,50 65,30" stroke="var(--accent-color)" stroke-width="0.8" />
-                <path d="M12,90 Q40,110 50,130" stroke="var(--accent-color)" stroke-width="0.8" />
-                <!-- الورد المنشور على الأغصان والفروع الجانبية -->
-                <use href="#boho-flower-src" x="10" y="10" transform="scale(1.2)" />
-                <use href="#boho-flower-src" x="65" y="30" transform="scale(0.9)" />
-                <use href="#boho-flower-src" x="12" y="90" transform="scale(1)" />
-                <use href="#boho-flower-src" x="50" y="130" transform="scale(0.85)" />
-                <use href="#boho-flower-src" x="80" y="200" transform="scale(1.1)" />
-                <!-- أوراق الشجر الناعمة المتفرعة -->
-                <use href="#boho-leaf-src" x="25" y="50" transform="rotate(30 25 50)" />
-                <use href="#boho-leaf-src" x="15" y="110" transform="rotate(-40 15 110)" />
+        <div class="bouquet-container">
+            <svg class="floral-bouquet bouquet-top-left" viewBox="0 0 120 120">
+                <use href="#luxury-rose" x="40" y="40" transform="scale(1.3)"/>
+                <use href="#luxury-rose" x="75" y="30" transform="scale(0.9)"/>
+                <use href="#luxury-rose" x="30" y="75" transform="scale(0.85)"/>
             </svg>
-
-            <!-- فرع علوي يمين -->
-            <svg class="floral-branch branch-top-right" viewBox="0 0 120 200" fill="none">
-                <path d="M10,0 Q30,60 10,140 T80,200" stroke="var(--accent-color)" stroke-width="1" />
-                <path d="M20,40 Q50,50 65,30" stroke="var(--accent-color)" stroke-width="0.8" />
-                <use href="#boho-flower-src" x="10" y="10" transform="scale(1.2)" />
-                <use href="#boho-flower-src" x="65" y="30" transform="scale(0.9)" />
-                <use href="#boho-flower-src" x="12" y="90" transform="scale(1)" />
-                <use href="#boho-flower-src" x="80" y="200" transform="scale(1.1)" />
+            <svg class="floral-bouquet bouquet-top-right" viewBox="0 0 120 120">
+                <use href="#luxury-rose" x="40" y="40" transform="scale(1.3)"/>
+                <use href="#luxury-rose" x="75" y="30" transform="scale(0.9)"/>
+                <use href="#luxury-rose" x="30" y="75" transform="scale(0.85)"/>
             </svg>
-
-            <!-- فرع منتصف يسار (عند العداد) -->
-            <svg class="floral-branch branch-mid-left" viewBox="0 0 120 200" fill="none">
-                <path d="M10,0 Q40,70 20,130 T70,190" stroke="var(--accent-color)" stroke-width="1" />
-                <path d="M25,50 Q55,60 60,40" stroke="var(--accent-color)" stroke-width="0.8" />
-                <use href="#boho-flower-src" x="10" y="10" transform="scale(1.1)" />
-                <use href="#boho-flower-src" x="60" y="40" transform="scale(0.9)" />
-                <use href="#boho-flower-src" x="22" y="100" transform="scale(1)" />
-                <use href="#boho-flower-src" x="70" y="190" transform="scale(1.1)" />
+            <svg class="floral-bouquet bouquet-bottom-left" viewBox="0 0 120 120">
+                <use href="#luxury-rose" x="40" y="40" transform="scale(1.3)"/>
+                <use href="#luxury-rose" x="75" y="30" transform="scale(0.9)"/>
             </svg>
-
-            <!-- فرع منتصف يمين (عند الخريطة) -->
-            <svg class="floral-branch branch-mid-right" viewBox="0 0 120 200" fill="none">
-                <path d="M10,0 Q40,70 20,130 T70,190" stroke="var(--accent-color)" stroke-width="1" />
-                <use href="#boho-flower-src" x="10" y="10" transform="scale(1.2)" />
-                <use href="#boho-flower-src" x="22" y="100" transform="scale(0.95)" />
-                <use href="#boho-flower-src" x="70" y="190" transform="scale(1.1)" />
-            </svg>
-
-            <!-- فرع سفلي يسار -->
-            <svg class="floral-branch branch-bottom-left" viewBox="0 0 120 200" fill="none">
-                <path d="M10,0 Q30,60 10,140 T80,200" stroke="var(--accent-color)" stroke-width="1" />
-                <path d="M20,40 Q50,50 65,30" stroke="var(--accent-color)" stroke-width="0.8" />
-                <use href="#boho-flower-src" x="10" y="10" transform="scale(1.2)" />
-                <use href="#boho-flower-src" x="65" y="30" transform="scale(0.9)" />
-                <use href="#boho-flower-src" x="80" y="200" transform="scale(1.1)" />
-            </svg>
-
-            <!-- فرع سفلي يمين قبل الفوتر -->
-            <svg class="floral-branch branch-bottom-right" viewBox="0 0 120 200" fill="none">
-                <path d="M10,0 Q30,60 10,140 T80,200" stroke="var(--accent-color)" stroke-width="1" />
-                <use href="#boho-flower-src" x="10" y="10" transform="scale(1.1)" />
-                <use href="#boho-flower-src" x="12" y="90" transform="scale(1)" />
-                <use href="#boho-flower-src" x="80" y="200" transform="scale(1.2)" />
+            <svg class="floral-bouquet bouquet-bottom-right" viewBox="0 0 120 120">
+                <use href="#luxury-rose" x="40" y="40" transform="scale(1.3)"/>
+                <use href="#luxury-rose" x="75" y="30" transform="scale(0.9)"/>
             </svg>
         </div>
 
-        <!-- الواجهة الرئيسية المعالجة -->
         <section class="hero">
-            <div class="top-crest">
-                <svg viewBox="0 0 100 100" fill="none" stroke="var(--accent-color)" stroke-width="1.3">
-                    <path d="M50,85 C50,85 20,55 20,32 C20,18 32,8 46,16 C50,18 50,18 50,18 C50,18 50,18 54,16 C68,8 80,18 80,32 C80,55 50,85 50,85 Z"/>
-                    <text x="50" y="46" font-family="'Playfair Display', serif" font-size="14" text-anchor="middle" fill="var(--accent-color)">Z & M</text>
-                </svg>
-            </div>
-            
             <p class="pre-title">Are Getting Married</p>
             
-            <!-- حل مشكلة بقاء الأسماء متوازية وبمظهر فاخر -->
-            <div class="names-row">
-                <span class="name">Zyad Nasser</span>
-                <span class="ampersand">&</span>
-                <span class="name">Mariam Sherif</span>
+            <div class="names-column">
+                <h1 class="name-row serif-italic">Zyad Nasser</h1>
+                <span class="ampersand serif-italic">&</span>
+                <h1 class="name-row serif-italic">Mariam Sherif</h1>
             </div>
         </section>
 
-        <!-- قسم العداد التنازلي -->
         <section class="section">
             <p class="pre-title">The Countdown</p>
             <h2 class="section-title">July 10, 2026</h2>
@@ -413,10 +330,9 @@
             </div>
         </section>
 
-        <!-- قسم تفاصيل القاعة -->
         <section class="section">
             <p class="pre-title">Location & Venue</p>
-            <h2 class="serif-font" style="font-size: 3.2rem; margin-bottom: 15px;">Golden Plaza</h2>
+            <h2 class="serif-italic" style="font-size: 3.2rem; margin-bottom: 15px; font-weight: 500;">Golden Plaza</h2>
             <p style="font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: #666; max-width: 440px; margin: 0 auto 25px auto;">
                 We warmly invite you to join us and celebrate the most beautiful night of our lives. Your presence completes our joy!
             </p>
@@ -425,12 +341,12 @@
         </section>
 
         <footer>
-            <p>Z & M • 2026</p>
+            <p class="serif-italic" style="font-size: 0.9rem; letter-spacing: 2px;">Z & M • 2026</p>
         </footer>
     </div>
 
     <script>
-        // الـ Preloader السينمائي المحدث
+        // حركة الـ Preloader والظهور الانسيابي الموحد
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
@@ -441,7 +357,7 @@
             }, 2300); 
         });
 
-        // تشغيل العداد التنازلي لليلة الفرح
+        // العداد التنازلي التلقائي لليلة الفرح (10 يوليو 2026 الساعة 8 مساءً)
         const weddingDate = new Date("July 10, 2026 20:00:00").getTime();
 
         const updateTimer = setInterval(() => {
@@ -459,7 +375,7 @@
             document.getElementById("secs").innerText  = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // حركة طيران قلوب الخلفية بالحروف (Z و M بالتبادل والترتيب)
+        // تأثير القلوب الخلفية بالحروف المتناوبة Z و M بالتناوب الهندسي
         let toggleLetter = true; 
 
         function spawnHeart() {
