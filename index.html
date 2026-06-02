@@ -94,23 +94,27 @@
         #main-content {
             opacity: 0;
             transition: opacity 1.2s ease-in-out;
+            position: relative;
+            width: 100%;
         }
         #main-content.visible {
             opacity: 1;
         }
 
-        /* --- الأركان الأربعة: تثبيت 3 وردات متداخلين في كل ركن --- */
+        /* --- الأركان الأربعة: تعديل لتكون ثابتة في أطراف الموقع نفسه وليس الشاشة + تكبير الحجم --- */
         .corner-flowers {
-            position: fixed;
-            width: 100px;
-            height: 100px;
+            position: absolute;
+            width: 160px; /* تكبير حجم الورد في الأركان بناءً على طلبك */
+            height: 160px;
             pointer-events: none;
             z-index: 10;
         }
-        .top-left     { top: 15px; left: 15px; }
-        .top-right    { top: 15px; right: 15px; transform: scaleX(-1); }
-        .bottom-left  { bottom: 15px; left: 15px; transform: scaleY(-1); }
-        .bottom-right { bottom: 15px; right: 15px; transform: scale(-1); }
+        
+        /* تلوين وتموضع الورد في أول الموقع وآخره فقط */
+        .top-left     { top: 20px; left: 20px; }
+        .top-right    { top: 20px; right: 20px; transform: scaleX(-1); }
+        .bottom-left  { bottom: 20px; left: 20px; transform: scaleY(-1); }
+        .bottom-right { bottom: 20px; right: 20px; transform: scale(-1); }
 
         /* --- حدود الموقع النباتية الجانبية --- */
         .site-frames {
@@ -216,7 +220,7 @@
             margin-bottom: 35px;
         }
 
-        /* تقسيم نص القاعة على 3 أسطر منسقة وثابتة */
+        /* تقسيم نص القاعة على 3 أسطر */
         .venue-text-container {
             display: flex;
             flex-direction: column;
@@ -280,7 +284,7 @@
         }
 
         footer {
-            padding: 60px 20px 40px 20px;
+            padding: 80px 20px 60px 20px;
             font-size: 0.75rem;
             letter-spacing: 4px;
             color: #A09E9A;
@@ -297,8 +301,8 @@
             .section-title { font-size: 2.2rem; }
             .countdown-container { gap: 12px; }
             .time-num { font-size: 2.2rem; }
-            .site-frames { width: 70px; }
-            .corner-flowers { width: 70px; height: 70px; }
+            .site-frames { width: 60px; }
+            .corner-flowers { width: 100px; height: 100px; } /* حجم متناسب للموبايل دون تداخل */
         }
     </style>
 </head>
@@ -325,13 +329,13 @@
         <g id="header-heart-icon">
             <path d="M50,30 Q65,12 80,30 Q80,52 50,78 Q20,52 20,30 Q35,12 50,30 Z" fill="none" stroke="var(--accent-color)" stroke-width="1.5"/>
         </g>
-        <!-- كود تركيبة الـ 3 وردات المخصصة للأركان الأربعة لمنع التكرار البصري -->
+        <!-- كود تركيبة الـ 3 وردات الكبيرة المخصصة للأركان الأربعة للموقع -->
         <g id="triple-corner-flowers">
-            <use href="#boho-flower" x="25" y="25" transform="scale(1.5)" />
-            <use href="#boho-flower" x="55" y="30" transform="scale(1.1)" />
-            <use href="#boho-flower" x="30" y="60" transform="scale(1.1)" />
-            <use href="#boho-leaf" x="65" y="65" transform="rotate(45 65 65) scale(0.9)" />
-            <use href="#boho-leaf" x="15" y="55" transform="rotate(-30 15 55) scale(0.9)" />
+            <use href="#boho-flower" x="30" y="30" transform="scale(1.9)" />
+            <use href="#boho-flower" x="75" y="40" transform="scale(1.4)" />
+            <use href="#boho-flower" x="40" y="85" transform="scale(1.4)" />
+            <use href="#boho-leaf" x="90" y="90" transform="rotate(45 90 90) scale(1.2)" />
+            <use href="#boho-leaf" x="20" y="75" transform="rotate(-30 20 75) scale(1.2)" />
         </g>
     </svg>
 
@@ -346,11 +350,11 @@
     <!-- المحتوى الرئيسي للموقع -->
     <div id="main-content">
         
-        <!-- باقات الـ 3 وردات المثبتة في الأركان الأربعة المحيطة بالموقع -->
-        <div class="corner-flowers top-left"><svg viewBox="0 0 100 100"><use href="#triple-corner-flowers"/></svg></div>
-        <div class="corner-flowers top-right"><svg viewBox="0 0 100 100"><use href="#triple-corner-flowers"/></svg></div>
-        <div class="corner-flowers bottom-left"><svg viewBox="0 0 100 100"><use href="#triple-corner-flowers"/></svg></div>
-        <div class="corner-flowers bottom-right"><svg viewBox="0 0 100 100"><use href="#triple-corner-flowers"/></svg></div>
+        <!-- باقات الـ 3 وردات الكبيرة المثبتة في أول الموقع وآخره كجزء من بنية الصفحة وليس الشاشة -->
+        <div class="corner-flowers top-left"><svg viewBox="0 0 120 120"><use href="#triple-corner-flowers"/></svg></div>
+        <div class="corner-flowers top-right"><svg viewBox="0 0 120 120"><use href="#triple-corner-flowers"/></svg></div>
+        <div class="corner-flowers bottom-left"><svg viewBox="0 0 120 120"><use href="#triple-corner-flowers"/></svg></div>
+        <div class="corner-flowers bottom-right"><svg viewBox="0 0 120 120"><use href="#triple-corner-flowers"/></svg></div>
 
         <!-- الأغصان المتعرجة الجانبية الممتدة لبروزة الموقع -->
         <div class="site-frames left-frame">
