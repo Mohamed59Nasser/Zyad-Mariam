@@ -8,7 +8,7 @@
     <!-- الفونتات الفخمة الموحدة للموقع بالكامل -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -35,7 +35,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 1. شاشة التحميل السينمائية مع إضافة الـ Subtitle المطلوب --- */
+        /* --- شاشة التحميل السينمائية --- */
         #preloader {
             position: fixed;
             top: 0;
@@ -99,7 +99,20 @@
             opacity: 1;
         }
 
-        /* --- 2. حدود الموقع: أغصان متعرجة ممتدة وشايلة ورد مستوحاة من image_4850c2.png --- */
+        /* --- الأركان الأربعة: تثبيت 3 وردات متداخلين في كل ركن --- */
+        .corner-flowers {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .top-left     { top: 15px; left: 15px; }
+        .top-right    { top: 15px; right: 15px; transform: scaleX(-1); }
+        .bottom-left  { bottom: 15px; left: 15px; transform: scaleY(-1); }
+        .bottom-right { bottom: 15px; right: 15px; transform: scale(-1); }
+
+        /* --- حدود الموقع النباتية الجانبية --- */
         .site-frames {
             position: absolute;
             top: 0;
@@ -108,17 +121,38 @@
             pointer-events: none;
             z-index: 1;
         }
-        
         .left-frame { left: 10px; }
         .right-frame { right: 10px; transform: scaleX(-1); }
 
         .vine-svg {
             width: 100%;
             height: 100%;
-            min-height: 2500px; /* يضمن امتداد الغصن بطول الصفحة كلها */
+            min-height: 100vh;
         }
 
-        /* --- 3. تصميم وهندسة أسامي العرسان جوه الصفحة --- */
+        /* --- تصميم الجزء المأخوذ من image_4840ab.png --- */
+        .vintage-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .header-heart {
+            width: 40px;
+            height: 40px;
+        }
+
+        .vintage-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #555555;
+            letter-spacing: 1px;
+        }
+
+        /* --- تصميم وهندسة أسامي العرسان --- */
         .serif-italic {
             font-family: 'Playfair Display', serif;
             font-style: italic;
@@ -136,15 +170,14 @@
         }
 
         .pre-title {
-            font-size: 0.8rem;
-            letter-spacing: 6px;
+            font-size: 0.85rem;
+            letter-spacing: 7px;
             text-transform: uppercase;
             color: var(--accent-color);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-weight: 400;
         }
 
-        /* كل اسم ثنائي في سطر مستقل وبفونت إيطاليك موحد */
         .names-column {
             display: flex;
             flex-direction: column;
@@ -158,19 +191,17 @@
             color: var(--text-main);
             white-space: nowrap; 
             line-height: 1.1;
-            letter-spacing: -0.5px;
         }
 
         .ampersand {
             font-size: 3.2rem;
             color: var(--accent-color);
             line-height: 1;
-            margin: 5px 0;
         }
 
         /* الأقسام العامة والعداد */
         .section {
-            padding: 100px 20px;
+            padding: 80px 20px;
             max-width: 650px;
             margin: 0 auto;
             position: relative;
@@ -183,6 +214,19 @@
             font-size: 2.8rem;
             color: var(--text-main);
             margin-bottom: 35px;
+        }
+
+        /* تقسيم نص القاعة على 3 أسطر منسقة وثابتة */
+        .venue-text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto 30px auto;
         }
 
         .countdown-container {
@@ -215,7 +259,6 @@
 
         .btn-capsule {
             display: inline-block;
-            margin-top: 25px;
             padding: 16px 45px;
             background-color: var(--accent-color);
             color: #FFFFFF;
@@ -236,23 +279,8 @@
             box-shadow: none;
         }
 
-        /* قلوب الخلفية الطائرة بالتناوب */
-        .floating-heart {
-            position: fixed;
-            bottom: -60px;
-            z-index: 0;
-            pointer-events: none;
-            animation: floatUp linear infinite;
-        }
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.18; }
-            80% { opacity: 0.18; }
-            100% { transform: translateY(-125vh) scale(1) rotate(15deg); opacity: 0; }
-        }
-
         footer {
-            padding: 80px 20px;
+            padding: 60px 20px 40px 20px;
             font-size: 0.75rem;
             letter-spacing: 4px;
             color: #A09E9A;
@@ -261,25 +289,25 @@
             z-index: 2;
         }
 
-        /* تفادي أي مشاكل أو تداخل على الموبايل */
         @media (max-width: 768px) {
             .preloader-title { font-size: 7.5vw; }
-            .preloader-subtitle { font-size: 0.7rem; letter-spacing: 4px; }
+            .vintage-title { font-size: 1.4rem; }
             .name-row { font-size: 10vw; } 
             .ampersand { font-size: 8vw; }
             .section-title { font-size: 2.2rem; }
             .countdown-container { gap: 12px; }
             .time-num { font-size: 2.2rem; }
-            .site-frames { width: 70px; } /* تصغير حجم الغصون على الموبايل ليعطي مساحة مثالية للقراءة */
+            .site-frames { width: 70px; }
+            .corner-flowers { width: 70px; height: 70px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- كود الوردة المكونة من 8 بتلات دائرية رقيقة المتطابقة مع الصورة لإعادة استدعائها برمجياً بطول الغصن -->
+    <!-- الأكواد البرمجية للورد والورق والقلوب المأخوذة من الهوية البصرية -->
     <svg style="display: none;">
+        <!-- الوردة بـ 8 بتلات الدائرية الدقيقة من صورتك الأولى -->
         <g id="boho-flower">
-            <!-- الـ 8 بتلات -->
             <path d="M0,0 C-5,-12 5,-12 0,0" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7" transform="rotate(0)"/>
             <path d="M0,0 C-5,-12 5,-12 0,0" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7" transform="rotate(45)"/>
             <path d="M0,0 C-5,-12 5,-12 0,0" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7" transform="rotate(90)"/>
@@ -288,15 +316,26 @@
             <path d="M0,0 C-5,-12 5,-12 0,0" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7" transform="rotate(225)"/>
             <path d="M0,0 C-5,-12 5,-12 0,0" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7" transform="rotate(270)"/>
             <path d="M0,0 C-5,-12 5,-12 0,0" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.7" transform="rotate(315)"/>
-            <!-- مركز الوردة الدائري المميز بلون دافئ -->
             <circle cx="0" cy="0" r="4" fill="var(--accent-color)" />
         </g>
         <g id="boho-leaf">
             <path d="M0,0 C-5,-8 0,-14 0,-14 C0,-14 5,-8 0,0 Z" fill="var(--flower-white)" stroke="var(--accent-color)" stroke-width="0.6"/>
         </g>
+        <!-- كود القلب الرقيق المخصص للهيدر من صورة image_4840ab.png -->
+        <g id="header-heart-icon">
+            <path d="M50,30 Q65,12 80,30 Q80,52 50,78 Q20,52 20,30 Q35,12 50,30 Z" fill="none" stroke="var(--accent-color)" stroke-width="1.5"/>
+        </g>
+        <!-- كود تركيبة الـ 3 وردات المخصصة للأركان الأربعة لمنع التكرار البصري -->
+        <g id="triple-corner-flowers">
+            <use href="#boho-flower" x="25" y="25" transform="scale(1.5)" />
+            <use href="#boho-flower" x="55" y="30" transform="scale(1.1)" />
+            <use href="#boho-flower" x="30" y="60" transform="scale(1.1)" />
+            <use href="#boho-leaf" x="65" y="65" transform="rotate(45 65 65) scale(0.9)" />
+            <use href="#boho-leaf" x="15" y="55" transform="rotate(-30 15 55) scale(0.9)" />
+        </g>
     </svg>
 
-    <!-- 1. شاشة التحميل (Preloader) المحدثة بالكامل -->
+    <!-- شاشة التحميل (Preloader) -->
     <div id="preloader">
         <div class="preloader-content">
             <div class="preloader-title">Zyad & Mariam</div>
@@ -304,66 +343,56 @@
         </div>
     </div>
 
+    <!-- المحتوى الرئيسي للموقع -->
     <div id="main-content">
         
-        <!-- 2. الفروع المتعرجة الجانبية (حدود الموقع النباتية بطول الـ Scroll) -->
-        <div class="site-frames left-frame">
-            <svg class="vine-svg" viewBox="0 0 100 2000" preserveAspectRatio="none">
-                <!-- رسم الغصن المتعرج بانسيابية فنية ممتدة لآخر الصفحة -->
-                <path d="M20,0 Q60,150 20,300 T20,600 T40,900 T20,1200 T30,1500 T20,1800 T20,2000" fill="none" stroke="var(--accent-color)" stroke-width="1.2" />
-                
-                <!-- فروع جانبية صغيرة خارجة من الغصن وعليها ورد وورق شجر مطابق لـ image_4850c2.png -->
-                <path d="M32,100 Q65,115 55,140" fill="none" stroke="var(--accent-color)" stroke-width="0.8"/>
-                <path d="M22,480 Q-10,500 5,530" fill="none" stroke="var(--accent-color)" stroke-width="0.8"/>
-                <path d="M38,1020 Q70,1050 50,1080" fill="none" stroke="var(--accent-color)" stroke-width="0.8"/>
-                <path d="M22,1620 Q-5,1640 10,1670" fill="none" stroke="var(--accent-color)" stroke-width="0.8"/>
+        <!-- باقات الـ 3 وردات المثبتة في الأركان الأربعة المحيطة بالموقع -->
+        <div class="corner-flowers top-left"><svg viewBox="0 0 100 100"><use href="#triple-corner-flowers"/></svg></div>
+        <div class="corner-flowers top-right"><svg viewBox="0 0 100 100"><use href="#triple-corner-flowers"/></svg></div>
+        <div class="corner-flowers bottom-left"><svg viewBox="0 0 100 100"><use href="#triple-corner-flowers"/></svg></div>
+        <div class="corner-flowers bottom-right"><svg viewBox="0 0 100 100"><use href="#triple-corner-flowers"/></svg></div>
 
-                <!-- توزيع الورد والورق النقي على مدار الغصن بالكامل ليصنع حدود مذهلة -->
-                <use href="#boho-flower" x="20" y="30" transform="scale(1.4)" />
-                <use href="#boho-flower" x="55" y="140" transform="scale(0.9)" />
-                <use href="#boho-flower" x="22" y="300" transform="scale(1.1)" />
-                <use href="#boho-flower" x="5" y="530" transform="scale(0.85)" />
-                <use href="#boho-flower" x="20" y="600" transform="scale(1.3)" />
-                <use href="#boho-flower" x="40" y="900" transform="scale(1.15)" />
-                <use href="#boho-flower" x="50" y="1080" transform="scale(0.9)" />
-                <use href="#boho-flower" x="20" y="1200" transform="scale(1.3)" />
-                <use href="#boho-flower" x="30" y="1500" transform="scale(1.1)" />
-                <use href="#boho-flower" x="10" y="1670" transform="scale(0.85)" />
-                <use href="#boho-flower" x="20" y="1800" transform="scale(1.3)" />
-                
-                <!-- أوراق الشجر الصغيرة الموزعة -->
-                <use href="#boho-leaf" x="35" y="70" transform="rotate(35 35 70) scale(0.9)" />
-                <use href="#boho-leaf" x="18" y="350" transform="rotate(-45 18 350) scale(0.9)" />
-                <use href="#boho-leaf" x="32" y="650" transform="rotate(20 32 650) scale(0.9)" />
-                <use href="#boho-leaf" x="38" y="1250" transform="rotate(40 38 1250) scale(0.9)" />
+        <!-- الأغصان المتعرجة الجانبية الممتدة لبروزة الموقع -->
+        <div class="site-frames left-frame">
+            <svg class="vine-svg" viewBox="0 0 100 1600" preserveAspectRatio="none">
+                <path d="M20,0 Q60,150 20,300 T20,600 T40,900 T20,1200 T20,1600" fill="none" stroke="var(--accent-color)" stroke-width="1.2" />
+                <use href="#boho-flower" x="20" y="150" transform="scale(1.3)" />
+                <use href="#boho-flower" x="30" y="450" transform="scale(1.1)" />
+                <use href="#boho-flower" x="20" y="750" transform="scale(1.3)" />
+                <use href="#boho-flower" x="35" y="1100" transform="scale(1.1)" />
+                <use href="#boho-flower" x="20" y="1400" transform="scale(1.2)" />
             </svg>
         </div>
 
         <div class="site-frames right-frame">
-            <svg class="vine-svg" viewBox="0 0 100 2000" preserveAspectRatio="none">
-                <path d="M20,0 Q60,150 20,300 T20,600 T40,900 T20,1200 T30,1500 T20,1800 T20,2000" fill="none" stroke="var(--accent-color)" stroke-width="1.2" />
-                <path d="M32,100 Q65,115 55,140" fill="none" stroke="var(--accent-color)" stroke-width="0.8"/>
-                <path d="M22,480 Q-10,500 5,530" fill="none" stroke="var(--accent-color)" stroke-width="0.8"/>
-                <path d="M38,1020 Q70,1050 50,1080" fill="none" stroke="var(--accent-color)" stroke-width="0.8"/>
-                
-                <use href="#boho-flower" x="20" y="30" transform="scale(1.4)" />
-                <use href="#boho-flower" x="55" y="140" transform="scale(0.9)" />
-                <use href="#boho-flower" x="22" y="300" transform="scale(1.1)" />
-                <use href="#boho-flower" x="5" y="530" transform="scale(0.85)" />
-                <use href="#boho-flower" x="20" y="600" transform="scale(1.3)" />
-                <use href="#boho-flower" x="40" y="900" transform="scale(1.15)" />
-                <use href="#boho-flower" x="50" y="1080" transform="scale(0.9)" />
-                <use href="#boho-flower" x="20" y="1200" transform="scale(1.3)" />
-                <use href="#boho-flower" x="30" y="1500" transform="scale(1.1)" />
-                <use href="#boho-flower" x="20" y="1800" transform="scale(1.3)" />
+            <svg class="vine-svg" viewBox="0 0 100 1600" preserveAspectRatio="none">
+                <path d="M20,0 Q60,150 20,300 T20,600 T40,900 T20,1200 T20,1600" fill="none" stroke="var(--accent-color)" stroke-width="1.2" />
+                <use href="#boho-flower" x="20" y="150" transform="scale(1.3)" />
+                <use href="#boho-flower" x="30" y="450" transform="scale(1.1)" />
+                <use href="#boho-flower" x="20" y="750" transform="scale(1.3)" />
+                <use href="#boho-flower" x="35" y="1100" transform="scale(1.1)" />
+                <use href="#boho-flower" x="20" y="1400" transform="scale(1.2)" />
             </svg>
         </div>
 
-        <!-- الواجهة الرئيسية مع تقسيم الأسطر الموزون -->
+        <!-- القسم الرئيسي (Hero Section) المحدث من صورة image_4840ab.png -->
         <section class="hero">
-            <p class="pre-title">Are Getting Married</p>
+            <!-- الجزء العلوي المستوحى والمطابق تماماً للصورة المعطاة -->
+            <div class="vintage-header">
+                <svg class="header-heart" viewBox="0 0 100 100">
+                    <use href="#header-heart-icon"/>
+                    <text x="50" y="48" font-family="'Montserrat', sans-serif" font-size="16" font-weight="500" text-anchor="middle" fill="var(--accent-color)">Z</text>
+                </svg>
+                <span class="vintage-title">Vintage Rose</span>
+                <svg class="header-heart" viewBox="0 0 100 100">
+                    <use href="#header-heart-icon"/>
+                    <text x="50" y="48" font-family="'Montserrat', sans-serif" font-size="16" font-weight="500" text-anchor="middle" fill="var(--accent-color)">M</text>
+                </svg>
+            </div>
             
-            <!-- التقسيم الاحترافي المطلب للأسماء لمنع النزول العشوائي وبنفس الفونت الرائع -->
+            <p class="pre-title">We Are Getting Married</p>
+            
+            <!-- أسامي العرسان منسقة في أسطر منفصلة بفونتها المميز -->
             <div class="names-column">
                 <h1 class="name-row serif-italic">Zyad Nasser</h1>
                 <span class="ampersand serif-italic">&</span>
@@ -396,13 +425,17 @@
             </div>
         </section>
 
-        <!-- قسم تفاصيل القاعة والكبسولة الانسيابية للخريطة -->
+        <!-- قسم تفاصيل القاعة المنسق على 3 أسطر بالظبط وبدون فراغات عشوائية -->
         <section class="section">
             <p class="pre-title">Location & Venue</p>
-            <h2 class="serif-italic" style="font-size: 3.2rem; margin-bottom: 15px; font-weight: 500;">Golden Plaza</h2>
-            <p style="font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: #666; max-width: 440px; margin: 0 auto 25px auto;">
-                We warmly invite you to join us and celebrate the most beautiful night of our lives. Your presence completes our joy!
-            </p>
+            <h2 class="serif-italic" style="font-size: 3.2rem; margin-bottom: 20px; font-weight: 500;">Golden Plaza</h2>
+            
+            <!-- توزيع متناسق على 3 أسطر محددة بدقة لتصميم رائع وقراءة مثالية -->
+            <div class="venue-text-container">
+                <span>We warmly invite you to join us and celebrate</span>
+                <span>the most beautiful night of our lives.</span>
+                <span>Your presence completes our joy!</span>
+            </div>
             
             <a href="https://maps.google.com" target="_blank" class="btn-capsule">Open Google Maps</a>
         </section>
@@ -413,7 +446,7 @@
     </div>
 
     <script>
-        // الـ Preloader الذكي المطور للحظة الأولى
+        // تشغيل الـ Preloader الذكي
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
@@ -424,7 +457,7 @@
             }, 2400); 
         });
 
-        // العداد التنازلي التلقائي الدقيق لليلة الفرح
+        // تشغيل العداد التنازلي بدقة ليوم زفافهم الكبير
         const weddingDate = new Date("July 10, 2026 20:00:00").getTime();
 
         const updateTimer = setInterval(() => {
@@ -441,35 +474,6 @@
             document.getElementById("mins").innerText  = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
             document.getElementById("secs").innerText  = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
-
-        // تأثير القلوب الرومانسية الخلفية المتناوبة بحروف Z و M بانتظام ذكي
-        let toggleLetter = true; 
-
-        function spawnHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-            
-            const leftPos = Math.random() * 100;
-            const duration = Math.random() * 4 + 7; 
-            const size = Math.random() * 10 + 20;   
-            
-            const currentLetter = toggleLetter ? 'Z' : 'M';
-            toggleLetter = !toggleLetter;
-
-            heart.style.left = leftPos + 'vw';
-            heart.style.animationDuration = duration + 's';
-            
-            heart.innerHTML = `
-                <svg viewBox="0 0 100 100" width="${size}" height="${size}">
-                   <path d="M50,25 Q75,5 90,30 Q90,60 50,90 Q10,60 10,30 Q25,5 50,25 Z" fill="none" stroke="var(--accent-color)" stroke-width="1.5"/>
-                   <text x="50" y="54" font-family="'Playfair Display', serif" font-size="22" font-style="italic" text-anchor="middle" fill="var(--accent-color)">${currentLetter}</text>
-                </svg>
-            `;
-            
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, duration * 1000);
-        }
-        setInterval(spawnHeart, 1300);
     </script>
 </body>
 </html>
