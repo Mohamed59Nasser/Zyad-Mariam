@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zyad & Mariam | Wedding Invitation</title>
     
-    <!-- Google Fonts for Luxury Typography -->
+    <!-- Luxury Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS Variables for Elegant Color Palette */
         :root {
-            --bg-color: #FBFaf5;     /* Warm Ivory / Off-White */
-            --text-dark: #2C302E;    /* Deep Charcoal for high contrast */
+            --bg-color: #FBFaf5;     /* Luxury Warm Ivory */
+            --text-dark: #2C302E;    /* Deep Charcoal */
             --accent-gold: #B89C72;  /* Muted Champagne Gold */
-            --text-light: #7A7A7A;   /* Soft Grey for secondary text */
+            --text-light: #7A7A7A;   /* Soft Grey */
         }
 
-        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -33,9 +31,9 @@
             text-align: center;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
         }
 
-        /* Typography */
         h1, h2, h3, .serif-text {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 400;
@@ -47,7 +45,21 @@
             letter-spacing: 5px;
             color: var(--accent-gold);
             margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
         }
+
+        /* Elegant Corner Flowers (SVG) */
+        .corner-flowers {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .top-left { top: 10px; left: 10px; }
+        .top-right { top: 10px; right: 10px; transform: scaleX(-1); }
 
         /* Hero Section */
         .hero {
@@ -60,28 +72,14 @@
             position: relative;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 1px;
-            height: 80px;
-            background-color: var(--accent-gold);
-            bottom: 40px;
-            animation: pulseLine 2s infinite;
-        }
-
-        @keyframes pulseLine {
-            0% { opacity: 0.3; transform: scaleY(0.8); }
-            50% { opacity: 1; transform: scaleY(1); }
-            100% { opacity: 0.3; transform: scaleY(0.8); }
-        }
-
         .names-wrapper {
-            margin: 30px 0;
+            margin: 25px 0;
+            position: relative;
+            z-index: 2;
         }
 
         .name {
-            font-size: 5.5rem;
+            font-size: 5rem;
             line-height: 1.1;
             color: var(--text-dark);
         }
@@ -90,45 +88,86 @@
             font-size: 3.5rem;
             font-style: italic;
             color: var(--accent-gold);
-            margin: -10px 0;
+            margin: -5px 0;
             display: block;
         }
 
         .hero-date {
             font-size: 1.1rem;
             letter-spacing: 4px;
-            margin-top: 30px;
+            margin-top: 25px;
             color: var(--text-dark);
+            position: relative;
+            z-index: 2;
         }
 
-        /* Details Section */
+        /* Sections Layout */
         .section {
-            padding: 100px 20px;
+            padding: 90px 20px;
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .section-title {
             font-size: 3rem;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             color: var(--text-dark);
         }
 
+        /* Countdown Grid */
+        .countdown-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #ffffff;
+            padding: 20px;
+            min-width: 90px;
+            border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            border: 1px solid rgba(184, 156, 114, 0.15);
+        }
+
+        .count-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            color: var(--text-dark);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .count-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+        }
+
+        /* Location Card */
         .event-details {
-            border-top: 1px solid rgba(184, 156, 114, 0.3);
-            border-bottom: 1px solid rgba(184, 156, 114, 0.3);
-            padding: 50px 0;
-            margin: 40px 0;
+            border-top: 1px solid rgba(184, 156, 114, 0.25);
+            border-bottom: 1px solid rgba(184, 156, 114, 0.25);
+            padding: 45px 0;
+            margin: 35px 0;
         }
 
         .event-time {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
             color: var(--text-dark);
+            line-height: 1.6;
         }
 
         .event-venue {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             margin-bottom: 15px;
             color: var(--accent-gold);
         }
@@ -137,57 +176,44 @@
             font-size: 0.95rem;
             color: var(--text-light);
             line-height: 1.6;
-            max-width: 400px;
+            max-width: 450px;
             margin: 0 auto;
         }
 
-        /* Countdown Section */
-        .countdown-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .count-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
-            color: var(--text-dark);
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-
-        .count-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--accent-gold);
-        }
-
-        /* Button */
+        /* Luxury Button */
         .btn {
             display: inline-block;
-            margin-top: 40px;
-            padding: 18px 40px;
+            margin-top: 25px;
+            padding: 16px 45px;
             background-color: transparent;
             color: var(--text-dark);
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 3px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             border: 1px solid var(--accent-gold);
             transition: all 0.4s ease;
+            border-radius: 2px;
         }
 
         .btn:hover {
             background-color: var(--accent-gold);
             color: #fff;
+        }
+
+        /* Floating Hearts Layer */
+        .floating-heart {
+            position: fixed;
+            bottom: -60px;
+            z-index: 0;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.7); opacity: 0; }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-120vh) scale(1.1); opacity: 0; }
         }
 
         /* Footer */
@@ -197,14 +223,16 @@
             letter-spacing: 4px;
             color: var(--text-light);
             text-transform: uppercase;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid rgba(184, 156, 114, 0.1);
+            position: relative;
+            z-index: 2;
         }
 
-        /* Scroll Animation Classes */
+        /* Scroll Animations */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
+            transform: translateY(20px);
+            transition: opacity 1.2s ease, transform 1.2s ease;
         }
 
         .fade-in.visible {
@@ -212,14 +240,15 @@
             transform: translateY(0);
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .name { font-size: 4rem; }
+            .name { font-size: 3.8rem; }
             .ampersand { font-size: 2.5rem; }
             .section { padding: 60px 20px; }
-            .countdown-wrapper { gap: 20px; flex-wrap: wrap; }
-            .count-num { font-size: 2.8rem; }
-            .event-venue { font-size: 1.8rem; }
+            .countdown-wrapper { gap: 15px; flex-wrap: wrap; }
+            .countdown-item { min-width: 75px; padding: 15px; }
+            .count-num { font-size: 2.5rem; }
+            .event-venue { font-size: 2rem; }
+            .corner-flowers { width: 100px; height: 100px; }
         }
     </style>
 </head>
@@ -227,6 +256,20 @@
 
     <!-- Hero Section -->
     <section class="hero fade-in">
+        <!-- Elegant Line-Art Floral SVGs -->
+        <svg class="corner-flowers top-left" viewBox="0 0 100 100" fill="none" stroke="var(--accent-gold)" stroke-width="0.75">
+            <path d="M0,0 C25,15 45,30 55,55 C40,50 30,35 15,20 Z"/>
+            <path d="M12,5 C22,18 35,22 45,12"/>
+            <path d="M5,15 C18,25 22,38 12,48"/>
+            <circle cx="28" cy="28" r="2" fill="var(--accent-gold)"/>
+        </svg>
+        <svg class="corner-flowers top-right" viewBox="0 0 100 100" fill="none" stroke="var(--accent-gold)" stroke-width="0.75">
+            <path d="M0,0 C25,15 45,30 55,55 C40,50 30,35 15,20 Z"/>
+            <path d="M12,5 C22,18 35,22 45,12"/>
+            <path d="M5,15 C18,25 22,38 12,48"/>
+            <circle cx="28" cy="28" r="2" fill="var(--accent-gold)"/>
+        </svg>
+
         <p class="subtitle">We Are Getting Married</p>
         <div class="names-wrapper">
             <h1 class="name">Zyad</h1>
@@ -236,24 +279,10 @@
         <p class="hero-date">10 . 07 . 2026</p>
     </section>
 
-    <!-- Details Section -->
+    <!-- Section 1: Countdown (Details) -->
     <section class="section fade-in">
-        <p class="subtitle">The Wedding Day</p>
-        <h2 class="section-title">Join Us to Celebrate</h2>
-        
-        <div class="event-details">
-            <h3 class="event-time serif-text">Friday, July 10th, 2026<br>At 8:00 PM</h3>
-            <h3 class="event-venue serif-text">Golden Plaza</h3>
-            <p class="event-address">We eagerly anticipate your presence to share in the joy and celebration of our special night.</p>
-        </div>
-
-        <a href="https://maps.google.com" target="_blank" class="btn">View Location Map</a>
-    </section>
-
-    <!-- Countdown Section -->
-    <section class="section fade-in">
-        <p class="subtitle">Anticipation</p>
-        <h2 class="section-title">Countdown to Forever</h2>
+        <p class="subtitle">The Countdown</p>
+        <h2 class="section-title">Counting Down To Forever</h2>
         
         <div class="countdown-wrapper">
             <div class="countdown-item">
@@ -275,13 +304,27 @@
         </div>
     </section>
 
+    <!-- Section 2: Location (Now placed safely under Countdown) -->
+    <section class="section fade-in">
+        <p class="subtitle">The Wedding Day</p>
+        <h2 class="section-title">Join Us To Celebrate</h2>
+        
+        <div class="event-details">
+            <h3 class="event-time serif-text">Friday, July 10th, 2026<br>At 8:00 PM</h3>
+            <h3 class="event-venue serif-text">Golden Plaza</h3>
+            <p class="event-address">We eagerly anticipate your presence to share in the joy and celebration of our special night.</p>
+        </div>
+
+        <a href="https://maps.app.goo.gl/AMYfMQbmzNiTB344A?g_st=ac" target="_blank" class="btn">View Location Map</a>
+    </section>
+
     <footer>
         Zyad & Mariam © 2026
     </footer>
 
-    <!-- Scripts for Countdown and Scroll Animations -->
+    <!-- All Logic Scripts (No External Dependencies) -->
     <script>
-        // 1. Countdown Timer Logic
+        // 1. Countdown Logic
         const weddingDate = new Date("July 10, 2026 20:00:00").getTime();
 
         const updateCountdown = setInterval(() => {
@@ -299,14 +342,36 @@
             document.getElementById("secs").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // 2. Scroll Fade-in Animation Logic
-        document.addEventListener("DOMContentLoaded", () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
+        // 2. Floating Hearts with Letters Logic
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            
+            const leftPosition = Math.random() * 100;
+            const animationDuration = Math.random() * 5 + 7;
+            const heartSize = Math.random() * 15 + 22;
+            
+            const letters = ['Z', 'M'];
+            const letter = letters[Math.floor(Math.random() * letters.length)];
 
+            heart.style.left = leftPosition + 'vw';
+            heart.style.animationDuration = animationDuration + 's';
+            
+            heart.innerHTML = `
+                <svg viewBox="0 0 100 100" width="${heartSize}" height="${heartSize}">
+                   <path d="M50,25 Q75,5 90,30 Q90,60 50,90 Q10,60 10,30 Q25,5 50,25 Z" fill="none" stroke="#B89C72" stroke-width="1.5"/>
+                   <text x="50" y="55" font-family="'Cormorant Garamond', serif" font-size="22" text-anchor="middle" fill="#B89C72" font-weight="bold">${letter}</text>
+                </svg>
+            `;
+            
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, animationDuration * 1000);
+        }
+        setInterval(createFloatingHeart, 900);
+
+        // 3. Smooth Scroll Intersection Observer Animation
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -319,10 +384,7 @@
             const fadeElements = document.querySelectorAll('.fade-in');
             fadeElements.forEach(el => observer.observe(el));
             
-            // Trigger visible class on load for elements already in view (like Hero)
-            setTimeout(() => {
-                document.querySelector('.hero').classList.add('visible');
-            }, 100);
+            setTimeout(() => { document.querySelector('.hero').classList.add('visible'); }, 100);
         });
     </script>
 </body>
