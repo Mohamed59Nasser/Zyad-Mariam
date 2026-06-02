@@ -8,8 +8,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- تم إضافة فونت Alex Brush هنا مع الحفاظ على Montserrat للتفاصيل -->
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <!-- تم تغيير الفونت هنا إلى Great Vibes الرقيق الكلاسيكي -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -63,8 +63,8 @@
         }
 
         .preloader-title {
-            font-family: 'Alex Brush', cursive;
-            font-size: 5rem; /* الفونت الجديد بيحتاج حجم أكبر عشان يظهر جماله */
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem; 
             font-weight: 400;
             color: var(--rose-dark);
             margin: 0;
@@ -154,9 +154,9 @@
             box-sizing: border-box;
         }
 
-        /* تطبيق الفونت الانسيابي القديم الرائع */
+        /* تطبيق فونت Great Vibes الجديد */
         .script-font {
-            font-family: 'Alex Brush', cursive;
+            font-family: 'Great Vibes', cursive;
             font-weight: 400;
         }
 
@@ -169,26 +169,28 @@
             font-weight: 500;
         }
 
+        /* تم ضبط أبعاد الأسطر هنا لضمان الفصل الكامل للأسماء */
         .names-column {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 5px; /* تقليل المسافة لأن فونت الـ Script يفضل التلاحم البصري */
-            margin: 25px 0;
+            gap: 10px; 
+            margin: 30px 0;
         }
 
         .name-row {
-            font-size: 5.5rem; /* حجم مثالي لخط Alex Brush ليظهر بوضوح */
+            font-size: 5rem; 
             color: var(--text-main);
             line-height: 1;
             margin: 0;
         }
 
         .ampersand {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             color: var(--rose-pink);
-            line-height: 0.8;
+            line-height: 1;
+            margin: 5px 0;
         }
 
         .section {
@@ -205,7 +207,7 @@
         }
 
         .section-title {
-            font-family: 'Alex Brush', cursive;
+            font-family: 'Great Vibes', cursive;
             font-size: 4rem;
             color: var(--text-main);
             margin-bottom: 15px;
@@ -287,8 +289,8 @@
 
         @media (max-width: 768px) {
             .preloader-title { font-size: 3.8rem; }
-            .name-row { font-size: 4.2rem; } 
-            .ampersand { font-size: 2.8rem; }
+            .name-row { font-size: 3.8rem; } 
+            .ampersand { font-size: 2.5rem; }
             .section-title { font-size: 3.2rem; }
             .countdown-container { gap: 12px; }
             .time-num { font-size: 2.2rem; }
@@ -396,18 +398,19 @@
                 <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
                     <svg width="35" height="35" viewBox="0 0 100 100">
                         <use href="#watercolor-heart"/>
-                        <text x="50" y="52" font-family="'Alex Brush', cursive" font-size="22" text-anchor="middle" fill="var(--rose-dark)">Z</text>
+                        <text x="50" y="55" font-family="'Great Vibes', cursive" font-size="24" text-anchor="middle" fill="var(--rose-dark)">Z</text>
                     </svg>
                     <span style="font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase; color: #8A817C;">The Wedding</span>
                     <svg width="35" height="35" viewBox="0 0 100 100">
                         <use href="#watercolor-heart"/>
-                        <text x="50" y="52" font-family="'Alex Brush', cursive" font-size="22" text-anchor="middle" fill="var(--rose-dark)">M</text>
+                        <text x="50" y="55" font-family="'Great Vibes', cursive" font-size="24" text-anchor="middle" fill="var(--rose-dark)">M</text>
                     </svg>
                 </div>
             </header>
             
             <p class="pre-title" style="margin-top: 15px;">Save The Date</p>
             
+            <!-- تم تقسيم الأسماء هنا بالظبط على 3 أسطر منفصلة -->
             <div class="names-column">
                 <h1 class="name-row script-font">Zyad Nasser</h1>
                 <span class="ampersand script-font">&</span>
@@ -452,7 +455,7 @@
             </section>
 
             <footer>
-                <p class="script-font" style="font-size: 1.5rem; letter-spacing: 1px; margin: 0; color: var(--rose-dark); text-transform: none;">Z & M • 2026</p>
+                <p class="script-font" style="font-size: 1.8rem; letter-spacing: 1px; margin: 0; color: var(--rose-dark); text-transform: none;">Z & M • 2026</p>
             </footer>
         </div>
     </div>
@@ -509,8 +512,8 @@
                 particle.innerHTML = `
                     <svg viewBox="0 0 100 100" width="${pixelSize}" height="${pixelSize}">
                         <use href="#watercolor-heart"/>
-                        <!-- تم تغيير فونت الأحرف داخل القلوب المتطايرة لـ Alex Brush لتتناسب مع التصميم بالكامل -->
-                        <text x="50" y="55" font-family="'Alex Brush', cursive" font-size="28" text-anchor="middle" fill="var(--rose-dark)">${currentLetter}</text>
+                        <!-- تم تحديث الخط داخل القلوب المتطايرة ليطابق الفونت الجديد Great Vibes -->
+                        <text x="50" y="58" font-family="'Great Vibes', cursive" font-size="32" text-anchor="middle" fill="var(--rose-dark)">${currentLetter}</text>
                     </svg>
                 `;
             }
