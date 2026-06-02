@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zyad & Mariam | Wedding Invitation</title>
     
-    <!-- الفونتات الفخمة الموحدة -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
@@ -14,11 +14,10 @@
         :root {
             --bg-color: #FCFBF9;     
             --text-main: #3E3B38;    
-            --accent-color: #D3C5B0; /* اللون الذهبي المطفأ */
-            --rose-color: #C98B8B;   /* لون الورد الروز الفخم الواضح */
+            --accent-color: #D3C5B0; /* Matte Gold */
+            --rose-color: #C98B8B;   /* Rose Gold */
         }
 
-        /* ضبط السكرول بار ومنع التداخل */
         html, body {
             margin: 0;
             padding: 0;
@@ -32,18 +31,12 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-color);
-            border-radius: 10px;
-        }
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
 
-        /* --- شاشة التحميل --- */
+        /* --- Preloader --- */
         #preloader {
             position: fixed;
             top: 0;
@@ -59,10 +52,6 @@
         }
 
         .preloader-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
             opacity: 0;
             transform: scale(0.95);
             animation: pulseIntro 2.4s forwards ease-in-out;
@@ -83,11 +72,7 @@
             100% { opacity: 0; transform: scale(1.02); }
         }
 
-        #preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+        #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
         #main-content {
             opacity: 0;
@@ -95,24 +80,25 @@
             position: relative;
             width: 100%;
         }
-        #main-content.visible {
-            opacity: 1;
-        }
+        #main-content.visible { opacity: 1; }
 
-        /* --- الورد الثابت الواضح في الأركان الأربعة --- */
-        .corner-flowers {
+        /* --- Corner Vine SVGs --- */
+        .corner-svg {
             position: absolute;
-            width: 150px; 
-            height: 150px;
+            width: 280px;
+            height: 280px;
             pointer-events: none;
             z-index: 10;
+            overflow: visible;
         }
-        .top-left     { top: 20px; left: 20px; }
-        .top-right    { top: 20px; right: 20px; transform: scaleX(-1); }
-        .bottom-left  { bottom: 20px; left: 20px; transform: scaleY(-1); }
-        .bottom-right { bottom: 20px; right: 20px; transform: scale(-1); }
 
-        /* --- العناصر المتطايرة من تحت لفوق (ورد وقلوب بحروف) --- */
+        /* Positioning */
+        .top-left { top: 0; left: 0; }
+        .top-right { top: 0; right: 0; transform: scaleX(-1); }
+        .bottom-left { bottom: 0; left: 0; transform: scaleY(-1); }
+        .bottom-right { bottom: 0; right: 0; transform: scale(-1); }
+
+        /* --- Floating Elements --- */
         .floating-element {
             position: fixed;
             bottom: -60px;
@@ -127,7 +113,7 @@
             100% { transform: translateY(-115vh) scale(1.1) rotate(30deg); opacity: 0; }
         }
 
-        /* --- تنسيقات الهيدر والمحتوى --- */
+        /* --- Main Layout --- */
         .vintage-header {
             display: flex;
             align-items: center;
@@ -291,186 +277,16 @@
             .section-title { font-size: 2.2rem; }
             .countdown-container { gap: 12px; }
             .time-num { font-size: 2.2rem; }
-            .corner-flowers { width: 100px; height: 100px; } 
+            .corner-svg { width: 160px; height: 160px; } 
         }
     </style>
 </head>
 <body>
 
-    <!-- مكتبة الأشكال الجاهزة (ورد بلدي حقيقي ملون + قلوب) -->
+    <!-- SVG Definitions for Reusable High-Fidelity Graphics -->
     <svg style="display: none;">
-        <!-- تصميم الوردة البلدي بلون روز واضح ومتداخل -->
-        <g id="real-rose">
-            <path d="M0,-16 C-15,-22 -26,-6 -20,10 C-15,26 0,20 0,26 C0,20 15,26 20,10 C26,-6 15,-22 0,-16 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.5"/>
-            <path d="M-11,-4 C-16,-13 -6,-20 0,-13 C6,-20 16,-13 11,-4 C6,6 -6,6 -11,-4 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
-            <path d="M-5,-6 C-5,-10 5,-10 5,-6 C5,-3 -5,-3 -5,-6 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
-            <path d="M-15,10 Q-22,18 -15,22 Q-10,16 -15,10" fill="none" stroke="var(--rose-color)" stroke-width="1"/>
-            <path d="M15,10 Q22,18 15,22 Q10,16 15,10" fill="none" stroke="var(--rose-color)" stroke-width="1"/>
-        </g>
-        
-        <!-- باقة الورد الثلاثية للأركان -->
-        <g id="triple-corner-flowers">
-            <use href="#real-rose" x="35" y="35" transform="scale(1.8)" />
-            <use href="#real-rose" x="85" y="45" transform="scale(1.3)" />
-            <use href="#real-rose" x="45" y="90" transform="scale(1.3)" />
-        </g>
-
-        <!-- قالب القلب المخصص للهيدر والقلوب الطائرة -->
-        <g id="base-heart">
-            <path d="M50,30 Q65,12 80,30 Q80,52 50,78 Q20,52 20,30 Q35,12 50,30 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.8"/>
-        </g>
-    </svg>
-
-    <!-- شاشة التحميل -->
-    <div id="preloader">
-        <div class="preloader-content">
-            <div class="preloader-title">Zyad & Mariam</div>
-            <div class="preloader-subtitle">Wedding Invitation</div>
-        </div>
-    </div>
-
-    <!-- المحتوى الرئيسي للموقع -->
-    <div id="main-content">
-        
-        <!-- الورد الفخم الواضح في الأركان الأربعة -->
-        <div class="corner-flowers top-left"><svg viewBox="0 0 130 130"><use href="#triple-corner-flowers"/></svg></div>
-        <div class="corner-flowers top-right"><svg viewBox="0 0 130 130"><use href="#triple-corner-flowers"/></svg></div>
-        <div class="corner-flowers bottom-left"><svg viewBox="0 0 130 130"><use href="#triple-corner-flowers"/></svg></div>
-        <div class="corner-flowers bottom-right"><svg viewBox="0 0 130 130"><use href="#triple-corner-flowers"/></svg></div>
-
-        <!-- الهيدر الرئيسي -->
-        <section class="hero">
-            <div class="vintage-header">
-                <svg class="header-heart" viewBox="0 0 100 100">
-                    <use href="#base-heart"/>
-                    <text x="50" y="49" font-family="'Montserrat', sans-serif" font-size="16" font-weight="500" text-anchor="middle" fill="var(--rose-color)">Z</text>
-                </svg>
-                <span class="vintage-title">Vintage Rose</span>
-                <svg class="header-heart" viewBox="0 0 100 100">
-                    <use href="#base-heart"/>
-                    <text x="50" y="49" font-family="'Montserrat', sans-serif" font-size="16" font-weight="500" text-anchor="middle" fill="var(--rose-color)">M</text>
-                </svg>
-            </div>
-            
-            <p class="pre-title">We Are Getting Married</p>
-            
-            <div class="names-column">
-                <h1 class="name-row serif-italic">Zyad Nasser</h1>
-                <span class="ampersand serif-italic">&</span>
-                <h1 class="name-row serif-italic">Mariam Sherif</h1>
-            </div>
-        </section>
-
-        <!-- العداد التنازلي لعام 2026 -->
-        <section class="section">
-            <p class="pre-title">The Countdown</p>
-            <h2 class="section-title">July 10, 2026</h2>
-            
-            <div class="countdown-container">
-                <div class="countdown-box">
-                    <span class="time-num" id="days">00</span>
-                    <span class="time-label">Days</span>
-                </div>
-                <div class="countdown-box">
-                    <span class="time-num" id="hours">00</span>
-                    <span class="time-label">Hours</span>
-                </div>
-                <div class="countdown-box">
-                    <span class="time-num" id="mins">00</span>
-                    <span class="time-label">Mins</span>
-                </div>
-                <div class="countdown-box">
-                    <span class="time-num" id="secs">00</span>
-                    <span class="time-label">Secs</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- تفاصيل القاعة -->
-        <section class="section">
-            <p class="pre-title">Location & Venue</p>
-            <h2 class="serif-italic" style="font-size: 3.2rem; margin-bottom: 20px; font-weight: 500;">Golden Plaza</h2>
-            
-            <div class="venue-text-container">
-                <span>We warmly invite you to join us and celebrate</span>
-                <span>the most beautiful night of our lives.</span>
-                <span>Your presence completes our joy!</span>
-            </div>
-            
-            <a href="https://maps.google.com" target="_blank" class="btn-capsule">Open Google Maps</a>
-        </section>
-
-        <footer>
-            <p class="serif-italic" style="font-size: 0.9rem; letter-spacing: 2px;">Z & M • 2026</p>
-        </footer>
-    </div>
-
-    <script>
-        // أنيميشن شاشة التحميل
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.getElementById('preloader').classList.add('hidden');
-                document.getElementById('main-content').classList.add('visible');
-            }, 2400); 
-        });
-
-        // تشغيل العداد التنازلي التلقائي لعام 2026
-        const weddingDate = new Date("July 10, 2026 20:00:00").getTime();
-        const updateTimer = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-            if (distance < 0) {
-                clearInterval(updateTimer);
-                return;
-            }
-            document.getElementById("days").innerText  = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("mins").innerText  = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById("secs").innerText  = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
-        }, 1000);
-
-        // --- كود توليد ميكس الورد والقلوب الطائرة بحروف Z و M من تحت لفوق ---
-        let letterToggle = true; 
-
-        function spawnFloatingElement() {
-            const element = document.createElement('div');
-            element.classList.add('floating-element');
-            
-            const leftPos = Math.random() * 85 + 5; 
-            const duration = Math.random() * 3 + 6;  // سرعة الحركة من 6 لـ 9 ثوانٍ
-            const size = Math.random() * 10 + 20;    // حجم مرئي وممتاز
-            
-            element.style.left = leftPos + 'vw';
-            element.style.animationDuration = duration + 's';
-            
-            // اختيار عشوائي: مرة يطلع قلب بحرف ومرة تطلع وردة صغيرة
-            const isHeart = Math.random() > 0.4; 
-
-            if (isHeart) {
-                const currentLetter = letterToggle ? 'Z' : 'M';
-                letterToggle = !letterToggle;
-                
-                element.innerHTML = `
-                    <svg viewBox="0 0 100 100" width="${size}" height="${size}">
-                        <use href="#base-heart"/>
-                        <text x="50" y="52" font-family="'Playfair Display', serif" font-size="22" font-style="italic" font-weight="600" text-anchor="middle" fill="var(--rose-color)">${currentLetter}</text>
-                    </svg>
-                `;
-            } else {
-                // توليد وردة صغيرة طائرة
-                element.innerHTML = `
-                    <svg viewBox="-30 -30 60 60" width="${size}" height="${size}">
-                        <use href="#real-rose"/>
-                    </svg>
-                `;
-            }
-            
-            document.body.appendChild(element);
-            setTimeout(() => { element.remove(); }, duration * 1000);
-        }
-        
-        // توليد عنصر جديد كل 800 مللي ثانية عشان تملى الشاشة بالورد والقلوب
-        setInterval(spawnFloatingElement, 800);
-    </script>
-</body>
-</html>
+        <defs>
+            <!-- Full Corner Botanical Design -->
+            <g id="botanical-corner">
+                <!-- Main Vine: Smooth organic curves, no straight lines -->
+                <path d="M0,280 C30,260 60,280 90,220 C110,180 100,140 140,100 C160,80 180,60
