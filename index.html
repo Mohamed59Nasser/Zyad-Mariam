@@ -283,19 +283,16 @@
 </head>
 <body>
 
-    <!-- SVG Definitions (تم بناء أغصان الورد المتصلة هندسياً هنا) -->
+    <!-- SVG Definitions -->
     <svg style="display: none;">
         <defs>
-            <!-- تصميم باقة الأركان: فرع شجر رئيسي منحني، طالع منه فروع فرعية، ورق، وورد متصل بالملي -->
+            <!-- فروع الأركان المتصلة الجميلة (مستمرة كما هي بدون تغيير) -->
             <g id="botanical-corner">
-                <!-- الفرع الرئيسي (Vine) -->
                 <path d="M0,0 Q30,10 60,40 T120,120 T150,200 T160,250" fill="none" stroke="var(--rose-color)" stroke-width="2.5" stroke-linecap="round"/>
-                <!-- فرع فرعي أول -->
                 <path d="M60,40 Q100,30 140,50" fill="none" stroke="var(--rose-color)" stroke-width="1.8" stroke-linecap="round"/>
-                <!-- فرع فرعي ثاني -->
                 <path d="M120,120 Q180,120 200,160" fill="none" stroke="var(--rose-color)" stroke-width="1.8" stroke-linecap="round"/>
                 
-                <!-- الوردة الكبيرة الأساسية متصلة بالفرع -->
+                <!-- وردة الأركان الكبيرة -->
                 <g transform="translate(120, 120) scale(0.9)">
                     <circle cx="0" cy="0" r="14" fill="var(--bg-color)" stroke="var(--rose-color)" stroke-width="1.5"/>
                     <path d="M-10,-5 C-15,-15 15,-15 10,-5 C15,10 -15,10 -10,-5 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
@@ -303,36 +300,26 @@
                     <circle cx="0" cy="0" r="3" fill="var(--rose-color)"/>
                 </g>
 
-                <!-- وردة متوسطة على الفرع الفرعي الأول -->
+                <!-- وردة الأركان المتوسطة -->
                 <g transform="translate(140, 50) scale(0.7)">
                     <circle cx="0" cy="0" r="12" fill="var(--bg-color)" stroke="var(--rose-color)" stroke-width="1.5"/>
                     <path d="M-8,-4 C-12,-12 12,-12 8,-4 C12,8 -12,8 -8,-4 Z" fill="none" stroke="var(--rose-color)" stroke-width="1"/>
                     <circle cx="0" cy="0" r="2.5" fill="var(--rose-color)"/>
                 </g>
 
-                <!-- وردة مقفولة (برعم) في نهاية الفرع الثاني -->
+                <!-- برعم صغير في الركن -->
                 <g transform="translate(200, 160) scale(0.6)">
                     <path d="M0,0 C10,-15 -10,-15 0,0 Z" fill="var(--bg-color)" stroke="var(--rose-color)" stroke-width="1.5"/>
                     <path d="M-5,-7 C0,-18 5,-7 0,0" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
                 </g>
 
-                <!-- أوراق الشجر المتصلة بالأغصان تلقائياً (Leaves) -->
-                <!-- ورقة عند ركن البداية -->
+                <!-- أوراق شجر الأركان -->
                 <path d="M20,7 C35,2 40,15 20,7 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
-                <!-- ورقة في المنتصف -->
                 <path d="M85,65 C105,55 110,75 85,65 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
-                <!-- ورقة على الفرع السفلي -->
                 <path d="M140,165 C165,165 160,185 140,165 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
             </g>
 
-            <!-- قالب الوردة البلدي المنفصلة (للتطاير) -->
-            <g id="real-rose">
-                <path d="M0,-16 C-15,-22 -26,-6 -20,10 C-15,26 0,20 0,26 C0,20 15,26 20,10 C26,-6 15,-22 0,-16 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.5"/>
-                <path d="M-11,-4 C-16,-13 -6,-20 0,-13 C6,-20 16,-13 11,-4 C6,6 -6,6 -11,-4 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
-                <path d="M-5,-6 C-5,-10 5,-10 5,-6 C5,-3 -5,-3 -5,-6 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.2"/>
-            </g>
-
-            <!-- قالب القلب المخصص للهيدر والقلوب الطائرة -->
+            <!-- قالب القلب النظيف للهيدر والقلوب الطائرة -->
             <g id="base-heart">
                 <path d="M50,30 Q65,12 80,30 Q80,52 50,78 Q20,52 20,30 Q35,12 50,30 Z" fill="none" stroke="var(--rose-color)" stroke-width="1.8"/>
             </g>
@@ -350,7 +337,7 @@
     <!-- المحتوى الرئيسي للموقع -->
     <div id="main-content">
         
-        <!-- استدعاء باقة الأغصان المتصلة الفخمة في الأركان الأربعة بالملي -->
+        <!-- فروع الورد الثابتة الأنيقة بالأركان الأربعة -->
         <svg class="corner-svg top-left" viewBox="0 0 250 250"><use href="#botanical-corner"/></svg>
         <svg class="corner-svg top-right" viewBox="0 0 250 250"><use href="#botanical-corner"/></svg>
         <svg class="corner-svg bottom-left" viewBox="0 0 250 250"><use href="#botanical-corner"/></svg>
@@ -379,7 +366,7 @@
             </div>
         </section>
 
-        <!-- العداد التنازلي لعام 2026 -->
+        <!-- العداد التنازلي -->
         <section class="section">
             <p class="pre-title">The Countdown</p>
             <h2 class="section-title">July 10, 2026</h2>
@@ -432,7 +419,7 @@
             }, 2400); 
         });
 
-        // تشغيل العداد التنازلي التلقائي لعام 2026
+        // العداد التنازلي لعام 2026
         const weddingDate = new Date("July 10, 2026 20:00:00").getTime();
         const updateTimer = setInterval(() => {
             const now = new Date().getTime();
@@ -447,7 +434,7 @@
             document.getElementById("secs").innerText  = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // --- كود توليد ميكس الورد والقلوب الطائرة بحروف Z و M من تحت لفوق ---
+        // --- كود توليد القلوب الطائرة فقط (تم إلغاء الورد الغريب تماماً) ---
         let letterToggle = true; 
 
         function spawnFloatingElement() {
@@ -461,30 +448,22 @@
             element.style.left = leftPos + 'vw';
             element.style.animationDuration = duration + 's';
             
-            const isHeart = Math.random() > 0.4; 
-
-            if (isHeart) {
-                const currentLetter = letterToggle ? 'Z' : 'M';
-                letterToggle = !letterToggle;
-                
-                element.innerHTML = `
-                    <svg viewBox="0 0 100 100" width="${size}" height="${size}">
-                        <use href="#base-heart"/>
-                        <text x="50" y="52" font-family="'Playfair Display', serif" font-size="22" font-style="italic" font-weight="600" text-anchor="middle" fill="var(--rose-color)">${currentLetter}</text>
-                    </svg>
-                `;
-            } else {
-                element.innerHTML = `
-                    <svg viewBox="-30 -30 60 60" width="${size}" height="${size}">
-                        <use href="#real-rose"/>
-                    </svg>
-                `;
-            }
+            // تحديد الحرف داخل القلب بالتبادل (مرة Z ومرة M)
+            const currentLetter = letterToggle ? 'Z' : 'M';
+            letterToggle = !letterToggle;
+            
+            element.innerHTML = `
+                <svg viewBox="0 0 100 100" width="${size}" height="${size}">
+                    <use href="#base-heart"/>
+                    <text x="50" y="52" font-family="'Playfair Display', serif" font-size="22" font-style="italic" font-weight="600" text-anchor="middle" fill="var(--rose-color)">${currentLetter}</text>
+                </svg>
+            `;
             
             document.body.appendChild(element);
             setTimeout(() => { element.remove(); }, duration * 1000);
         }
         
+        // توليد قلب جديد كل 800 مللي ثانية
         setInterval(spawnFloatingElement, 800);
     </script>
 </body>
