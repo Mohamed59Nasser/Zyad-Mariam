@@ -9,12 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
-        /* إعدادات الألوان */
         :root {
-            --bg-color: #FAF9F6;
+            --bg-color: #FAF9F6; /* أوف وايت فخم للخلفية */
             --white: #FFFFFF;
             --text-color: #4A4A4A;
-            --accent-color: #C3B091;
+            --accent-color: #C3B091; /* ذهبي/بيج كلاسيكي */
             --dark-accent: #8E7C5E;
             --rose-gold: #E6D7C3;
         }
@@ -29,19 +28,19 @@
             scroll-behavior: smooth;
         }
 
-        /* تنسيق صورة الوردة الحقيقية */
-        .real-flower {
-            width: 200px;
-            max-width: 80%;
-            margin-bottom: 20px;
-            /* السطر ده بيخلي خلفية الصورة البيضاء تختفي وتندمج مع لون الموقع */
-            mix-blend-mode: multiply; 
-            opacity: 0.95;
-            z-index: 2;
-            position: relative;
+        /* ورد الأركان الفخم (أعلى اليمين واليسار) */
+        .corner-flowers { 
+            position: absolute; 
+            width: 160px; 
+            height: 160px; 
+            z-index: 1; 
+            pointer-events: none; 
+            opacity: 0.8;
         }
+        .top-left { top: 10px; left: 10px; }
+        .top-right { top: 10px; right: 10px; transform: scaleX(-1); }
 
-        /* القسم الأول (الأسماء) */
+        /* الهيرو (الواجهة الرئيسية) */
         .hero { 
             min-height: 100vh; 
             display: flex; 
@@ -50,65 +49,192 @@
             align-items: center; 
             padding: 20px; 
             position: relative; 
-            background: linear-gradient(to bottom, var(--white), var(--bg-color));
-            animation: fadeIn 2s ease-in;
         }
 
-        .intro-text { text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; color: var(--dark-accent); margin-bottom: 20px; position: relative; z-index: 2; }
-        .names { font-family: 'Playfair Display', serif; font-size: 4.5rem; color: var(--text-color); margin: 10px 0; position: relative; z-index: 2; line-height: 1.2;}
-        .and { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3rem; color: var(--accent-color); margin: 10px 0; position: relative; z-index: 2; }
-        .divider { width: 60px; height: 2px; background-color: var(--accent-color); margin: 30px auto; position: relative; z-index: 2; }
+        /* طوق الورد المركزي الجديد - مرسوم بروقان */
+        .wreath-container { 
+            width: 100%; 
+            max-width: 180px; 
+            margin-bottom: 25px; 
+            z-index: 2; 
+        }
+
+        .intro-text { 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-size: 0.85rem; 
+            color: var(--dark-accent); 
+            margin-bottom: 15px; 
+            z-index: 2; 
+        }
         
-        /* القلوب الطائرة (العلامة المائية المتحركة) */
-        .floating-heart { position: fixed; bottom: -50px; z-index: 0; pointer-events: none; animation: floatUp linear infinite; }
+        .names { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 4.2rem; 
+            color: var(--text-color); 
+            margin: 5px 0; 
+            z-index: 2; 
+            line-height: 1.2;
+        }
+        
+        .and { 
+            font-family: 'Playfair Display', serif; 
+            font-style: italic; 
+            font-size: 2.8rem; 
+            color: var(--accent-color); 
+            margin: 5px 0; 
+            z-index: 2; 
+        }
+        
+        .divider { 
+            width: 80px; 
+            height: 1px; 
+            background-color: var(--accent-color); 
+            margin: 25px auto; 
+            z-index: 2; 
+        }
+
+        .main-date {
+            letter-spacing: 4px; 
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: var(--dark-accent);
+            margin: 0;
+            z-index: 2;
+        }
+        
+        /* تأثير القلوب الطائرة اللي طلبتها بالظبط */
+        .floating-heart { 
+            position: fixed; 
+            bottom: -50px; 
+            z-index: 0; 
+            pointer-events: none; 
+            animation: floatUp linear infinite; 
+        }
         @keyframes floatUp {
             0% { transform: translateY(0) scale(0.8); opacity: 0; }
-            50% { opacity: 0.3; }
+            20% { opacity: 0.35; }
+            80% { opacity: 0.35; }
             100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
         }
 
-        /* باقي الأقسام */
-        .details-section, .location-section { padding: 80px 20px; position: relative; z-index: 1; }
-        .date { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 10px; }
-        .countdown-container { display: flex; justify-content: center; gap: 20px; margin: 40px 0; flex-wrap: wrap; }
-        .time-box { background-color: var(--white); padding: 20px; border-radius: 8px; min-width: 90px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(195, 176, 145, 0.2); }
-        .number { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--dark-accent); display: block; }
-        .label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-color); margin-top: 5px; display: block; }
-        .venue { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
+        /* باقي أقسام الصفحة (التفاصيل والمكان) */
+        .details-section, .location-section { 
+            padding: 80px 20px; 
+            position: relative; 
+            z-index: 1; 
+        }
         
-        .map-btn { display: inline-block; margin-top: 30px; padding: 16px 45px; background-color: var(--accent-color); color: var(--white); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; border-radius: 30px; transition: background 0.3s, transform 0.3s; box-shadow: 0 4px 15px rgba(195, 176, 145, 0.4); }
-        .map-btn:hover { background-color: var(--dark-accent); transform: translateY(-3px); }
-        footer { padding: 30px; background-color: var(--white); font-size: 0.8rem; letter-spacing: 2px; color: var(--dark-accent); position: relative; z-index: 2; }
+        .section-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2.5rem; 
+            color: var(--text-color); 
+            margin-bottom: 10px;
+        }
 
-        @keyframes fadeIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        .countdown-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            margin: 40px 0; 
+        }
+        
+        .time-box { 
+            background: var(--white); 
+            padding: 15px 20px; 
+            border-radius: 8px; 
+            min-width: 75px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(195, 176, 145, 0.2); 
+        }
+        
+        .number { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2.2rem; 
+            color: var(--dark-accent); 
+            display: block; 
+        }
+        
+        .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
 
+        .map-btn { 
+            display: inline-block; 
+            margin-top: 25px; 
+            padding: 15px 40px; 
+            background-color: var(--accent-color); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 30px; 
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(195, 176, 145, 0.3);
+            transition: 0.3s ease;
+        }
+        .map-btn:hover { background-color: var(--dark-accent); transform: translateY(-2px); }
+
+        footer {
+            padding: 40px 20px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        /* ريسبرونسيف للموبايل عشان مفيش حاجة تضرب */
         @media (max-width: 600px) {
             .names { font-size: 3rem; }
-            .countdown-container { gap: 10px; }
-            .time-box { padding: 15px; min-width: 70px; }
-            .number { font-size: 2rem; }
-            .label { font-size: 0.7rem; }
-            .real-flower { width: 160px; }
+            .and { font-size: 2.2rem; }
+            .corner-flowers { width: 100px; height: 100px; }
+            .time-box { min-width: 55px; padding: 10px; }
+            .number { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Rosa_centifolia_Redoute.jpg/640px-Rosa_centifolia_Redoute.jpg" alt="Vintage Rose" class="real-flower">
+        <svg class="corner-flowers top-left" viewBox="0 0 100 100" fill="none" stroke="var(--accent-color)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M0,0 C20,10 40,15 50,35 C55,45 45,60 35,55 C20,50 30,30 15,25 C5,20 0,0 0,0 Z"/>
+            <path d="M25,10 C35,20 45,15 50,5 M10,25 C20,35 15,45 5,50"/>
+            <circle cx="35" cy="35" r="3" fill="var(--accent-color)"/>
+            <circle cx="45" cy="25" r="2" fill="var(--accent-color)"/>
+        </svg>
+        <svg class="corner-flowers top-right" viewBox="0 0 100 100" fill="none" stroke="var(--accent-color)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M0,0 C20,10 40,15 50,35 C55,45 45,60 35,55 C20,50 30,30 15,25 C5,20 0,0 0,0 Z"/>
+            <path d="M25,10 C35,20 45,15 50,5 M10,25 C20,35 15,45 5,50"/>
+            <circle cx="35" cy="35" r="3" fill="var(--accent-color)"/>
+            <circle cx="45" cy="25" r="2" fill="var(--accent-color)"/>
+        </svg>
+
+        <div class="wreath-container">
+            <svg viewBox="0 0 100 100" fill="none" stroke="var(--accent-color)" stroke-width="1.2">
+                <circle cx="50" cy="50" r="35" stroke-dasharray="4 4" opacity="0.5"/>
+                <path d="M15,50 C15,30 30,15 50,15 C70,15 85,30 85,50 C85,70 70,85 50,85 C30,85 15,70 15,50 Z"/>
+                <path d="M25,30 Q20,25 28,22 Q32,28 25,30 Z" fill="var(--accent-color)"/>
+                <path d="M75,30 Q80,25 72,22 Q68,28 75,30 Z" fill="var(--accent-color)"/>
+                <path d="M50,15 Q50,5 55,8 Q52,18 50,15 Z" fill="var(--accent-color)"/>
+                <path d="M50,85 Q50,95 45,92 Q48,82 50,85 Z" fill="var(--accent-color)"/>
+            </svg>
+        </div>
 
         <div class="intro-text">We are getting married</div>
         <div class="names">Zyad Nasser</div>
         <div class="and">&</div>
         <div class="names">Mariam Sherif</div>
         <div class="divider"></div>
-        <p style="letter-spacing: 3px; font-weight: 300;">10 . 07 . 2026</p>
+        <p class="main-date">10 . 07 . 2026</p>
     </section>
 
     <section class="details-section">
-        <h2 class="date">Save The Date</h2>
-        <p style="letter-spacing: 2px; color: #8E7C5E; font-weight: 500;">FRIDAY, JULY 10, 2026 AT 8:00 PM</p>
+        <h2 class="section-title">Save The Date</h2>
+        <p style="letter-spacing: 2px; color: var(--dark-accent); font-weight: 500; font-size: 0.9rem;">FRIDAY, JULY 10, 2026</p>
         
         <div class="countdown-container">
             <div class="time-box"><span class="number" id="days">00</span><span class="label">Days</span></div>
@@ -119,24 +245,20 @@
     </section>
 
     <section class="location-section">
-        
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Rosa_centifolia_Redoute.jpg/640px-Rosa_centifolia_Redoute.jpg" alt="Vintage Rose" class="real-flower" style="width: 120px; margin: 0 auto 20px auto; display: block; opacity: 0.8;">
-
-        <div class="intro-text">Join Us At</div>
-        <h2 class="venue">Golden Plaza</h2>
-        <p>We can't wait to celebrate with you!</p>
-        <a href="https://maps.app.goo.gl/AMYfMQbmzNiTB344A?g_st=ac" target="_blank" class="map-btn">
-            Open in Google Maps
-        </a>
+        <div class="intro-text">Wedding Venue</div>
+        <h2 class="section-title" style="font-size: 2.2rem;">Golden Plaza</h2>
+        <p style="max-width: 400px; margin: 0 auto; color: #666; font-size: 0.9rem; line-height: 1.6;">بانتظاركم تشرفونا وتشاركونا فرحتنا في ليلتنا الكبيرة!</p>
+        <a href="https://maps.google.com" target="_blank" class="map-btn">Open in Google Maps</a>
     </section>
 
     <footer>
-        Zyad & Mariam © 2026
+        Zyad & Mariam — 2026
     </footer>
 
     <script>
-        // --- 1. برمجة العداد التنازلي ---
+        // العداد التنازلي لتاريخ الفرح
         const weddingDate = new Date("July 10, 2026 20:00:00").getTime();
+        
         const timer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
@@ -152,24 +274,21 @@
             document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // --- 2. برمجة القلوب المتحركة ---
+        // القلوب الطائرة وعليها الحروف العشوائية Z و M
         function createFloatingHeart() {
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
             
-            // تحديد مكان وحجم ووقت عشوائي لكل قلب
             const leftPosition = Math.random() * 100;
             const animationDuration = Math.random() * 5 + 7;
-            const heartSize = Math.random() * 20 + 30;
+            const heartSize = Math.random() * 15 + 25;
             
-            // اختيار الحرف بشكل عشوائي Z أو M
             const letters = ['Z', 'M'];
             const letter = letters[Math.floor(Math.random() * letters.length)];
 
             heart.style.left = leftPosition + 'vw';
             heart.style.animationDuration = animationDuration + 's';
             
-            // رسم القلب بداخله الحرف
             heart.innerHTML = `
                 <svg viewBox="0 0 100 100" width="${heartSize}" height="${heartSize}">
                    <path d="M50,25 Q75,5 90,30 Q90,60 50,90 Q10,60 10,30 Q25,5 50,25 Z" fill="none" stroke="#C3B091" stroke-width="2"/>
@@ -178,14 +297,9 @@
             `;
             
             document.body.appendChild(heart);
-            
-            // مسح القلب بعد ما يخلص حركته
-            setTimeout(() => {
-                heart.remove();
-            }, animationDuration * 1000);
+            setTimeout(() => { heart.remove(); }, animationDuration * 1000);
         }
 
-        // إنشاء قلب جديد كل 1 ثانية
         setInterval(createFloatingHeart, 1000);
     </script>
 </body>
