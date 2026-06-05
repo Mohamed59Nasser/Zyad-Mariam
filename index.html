@@ -360,7 +360,21 @@
             .frame-svg         { width: 230px; height: 230px; }
             .border-outer, .border-inner { display: none; }
         }
-    </style>
+    
+.custom-ornament{
+font-family:'Times New Roman',serif;
+font-size:4.2rem;
+color:var(--rose-dark);
+line-height:1;
+opacity:.9;
+}
+.heart-letter{
+font-family:'Cormorant Garamond',serif !important;
+font-size:24px;
+font-weight:600;
+}
+
+</style>
 </head>
 <body>
 
@@ -513,8 +527,7 @@
         </defs>
     </svg>
 
-    <div class="border-outer"></div>
-    <div class="border-inner"></div>
+    
 
     <div id="preloader">
         <div class="preloader-content">
@@ -540,12 +553,12 @@
                 <div style="display:flex; align-items:center; justify-content:center; gap:14px;">
                     <svg width="38" height="38" viewBox="0 0 100 100">
                         <use href="#watercolor-heart"/>
-                        <text x="50" y="58" font-family="'Pinyon Script', cursive" font-size="26" text-anchor="middle" fill="var(--rose-dark)">Z</text>
+                        <text x="50" y="58" class="heart-letter" text-anchor="middle" fill="var(--rose-dark)">Z</text>
                     </svg>
                     <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.8rem; letter-spacing:5px; text-transform:uppercase; color:#8A817C;">The Wedding</span>
                     <svg width="38" height="38" viewBox="0 0 100 100">
                         <use href="#watercolor-heart"/>
-                        <text x="50" y="58" font-family="'Pinyon Script', cursive" font-size="26" text-anchor="middle" fill="var(--rose-dark)">M</text>
+                        <text x="50" y="58" class="heart-letter" text-anchor="middle" fill="var(--rose-dark)">M</text>
                     </svg>
                 </div>
             </header>
@@ -556,7 +569,7 @@
 
             <div class="names-column">
                 <h1 class="name-row">Zyad Nasser</h1>
-                <span class="ampersand pinyon">&</span>
+                <span class="custom-ornament">❦</span>
                 <h1 class="name-row">Mariam Sherif</h1>
             </div>
 
@@ -602,7 +615,7 @@
             </section>
 
             <footer>
-                <p class="pinyon" style="font-size:1.9rem; letter-spacing:2px; margin:0; color:var(--rose-dark);">Z & M &nbsp;•&nbsp; 2026</p>
+                <p class="pinyon" style="font-size:1.9rem; letter-spacing:2px; margin:0; color:var(--rose-dark);">❦ Z M ❦ &nbsp;•&nbsp; 2026</p>
             </footer>
 
         </div>
@@ -657,7 +670,7 @@
                 particle.innerHTML = `
                     <svg viewBox="0 0 100 100" width="${size}" height="${size}">
                         <use href="#watercolor-heart" opacity="0.55"/>
-                        <text x="50" y="62" font-family="'Pinyon Script', cursive" font-size="40"
+                        <text x="50" y="62" font-family='Cormorant Garamond, serif' font-size='30'
                               text-anchor="middle" fill="var(--text-main)" opacity="0.8">${letter}</text>
                         <g transform="translate(68,60) scale(0.18)">
                             <use href="#leaf-a" transform="translate(20,-18) rotate(50)"/>
