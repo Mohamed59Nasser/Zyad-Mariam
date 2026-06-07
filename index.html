@@ -194,7 +194,7 @@
             font-family: 'Playfair Display', serif;
             font-style: italic;
             font-size: 4rem;
-            color: #C9A96A;
+            color: var(--gold);
             line-height: 1;
             display: block;
             margin: 8px 0;
@@ -320,19 +320,28 @@
 </head>
 <body>
 
+    <!-- ===== GLOBAL SVG DEFS ===== -->
     <svg style="display:none;" xmlns="http://www.w3.org/2000/svg">
         <defs>
+            <!-- HEART (Pink for static top) -->
             <g id="watercolor-heart">
                 <path d="M50,30 Q65,10 80,30 Q82,55 50,80 Q18,55 20,30 Q35,10 50,30 Z"
                       fill="none" stroke="var(--rose-pink)" stroke-width="1.6" opacity="0.75"/>
             </g>
+            <!-- BLACK HEART (For flying particles) -->
+            <g id="black-heart">
+                <path d="M50,30 Q65,10 80,30 Q82,55 50,80 Q18,55 20,30 Q35,10 50,30 Z"
+                      fill="none" stroke="#222222" stroke-width="1.6" opacity="0.75"/>
+            </g>
         </defs>
     </svg>
 
+    <!-- Preloader -->
     <div id="preloader">
         <div class="preloader-content">
             <div class="preloader-ornament">✦ ✦ ✦</div>
-            <h1 class="preloader-title">Zyad <span style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold);">&</span> Mariam</h1>
+            <!-- الـ & اللي برة بقت بنفس لون الأسامي عشان تكون لايقة -->
+            <h1 class="preloader-title">Zyad <span style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--rose-dark);">&</span> Mariam</h1>
             <div class="preloader-subtitle">Wedding Invitation</div>
             <div class="preloader-ornament" style="margin-top:6px;">✦ ✦ ✦</div>
         </div>
@@ -361,12 +370,14 @@
 
             <div class="names-column">
                 <h1 class="name-row">Zyad Nasser</h1>
+                <!-- الـ & اللي جوة لسه محتفظة بلونها زي ما طلبت -->
                 <span class="ampersand">&</span>
                 <h1 class="name-row">Mariam Sherif</h1>
             </div>
 
             <div class="ornament-line">✦</div>
 
+            <!-- Countdown -->
             <section class="section">
                 <p class="pre-title">The Countdown</p>
                 <h2 class="section-title pinyon">July 10, 2026</h2>
@@ -391,6 +402,7 @@
                 </div>
             </section>
 
+            <!-- Location -->
             <section class="section">
                 <p class="pre-title">Location & Venue</p>
                 <h2 class="pinyon" style="font-size:4.6rem; margin:0 0 14px 0; color:var(--text-main);">Golden Plaza</h2>
@@ -435,7 +447,7 @@
             document.getElementById("secs").innerText  = Math.floor((diff % 60000) / 1000).toString().padStart(2,'0');
         }, 1000);
 
-        // Floating hearts with matching static heart font
+        // Floating Hearts
         function createFloatingParticle() {
             const particle = document.createElement('div');
             particle.classList.add('floating-element');
@@ -448,19 +460,20 @@
             particle.style.left = x + 'vw';
             particle.style.animationDuration = speed + 's';
 
-            // قلوب صافية أنيقة بنفس خط الـ Playfair Display الثابت فوق بدون أي ورد
+            // قلوب طايرة باللون الأسود وخط الحروف أسود
             particle.innerHTML = `
                 <svg viewBox="0 0 100 100" width="${size}" height="${size}">
-                    <use href="#watercolor-heart" opacity="0.55"/>
+                    <use href="#black-heart" opacity="0.65"/>
                     <text x="50" y="62" font-family="'Playfair Display', serif" font-size="34" font-weight="500"
-                          text-anchor="middle" fill="var(--rose-dark)" opacity="0.85">${letter}</text>
+                          text-anchor="middle" fill="#222222" opacity="0.85">${letter}</text>
                 </svg>`;
 
             document.body.appendChild(particle);
             setTimeout(() => particle.remove(), speed * 1000);
         }
 
-        setInterval(createFloatingParticle, 700);
+        // خليت المعدل 250 بدل 700 عشان القلوب تطلع بشكل أسرع وأكتر بكتير
+        setInterval(createFloatingParticle, 250); 
     </script>
 </body>
 </html>
