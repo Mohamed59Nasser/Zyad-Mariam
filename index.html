@@ -313,13 +313,16 @@
 
         /* تعديلات الموبايل عشان الشاشة المتناسقة بنسبة 100% */
         @media (max-width: 768px) {
-            .preloader-title   { font-size: 2.5rem; white-space: nowrap; } /* تمنع الكلمة تنزل سطر تاني */
-            .name-row          { font-size: 3.6rem; }
-            .ampersand         { font-size: 3rem; }
+            .preloader-title   { font-size: 2.5rem; white-space: nowrap; } 
+            
+            /* هنا التعديل اللي هيخلي الأسامي في سطر واحد وماتنزلش سطرين أبدًا */
+            .name-row          { font-size: 2.7rem; white-space: nowrap; width: 100%; text-align: center; } 
+            
+            .ampersand         { font-size: 2.5rem; margin: 6px 0; }
             .section-title     { font-size: 3rem; }
             .countdown-box     { width: 62px; }
             .time-num          { font-size: 2.2rem; }
-            .content-wrapper   { padding: 80px 20px 60px 20px; }
+            .content-wrapper   { padding: 80px 10px 60px 10px; }
         }
     </style>
 </head>
@@ -476,7 +479,6 @@
             setTimeout(() => particle.remove(), speed * 1000);
         }
 
-        // تم التعديل لـ 500 ملي ثانية بالظبط بناءً على طلبك
         setInterval(createFloatingParticle, 500); 
     </script>
 </body>
