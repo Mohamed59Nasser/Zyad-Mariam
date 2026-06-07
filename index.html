@@ -63,16 +63,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             width: 90%;
             max-width: 600px;
         }
 
-        .preloader-ornament {
-            font-size: 1.2rem;
-            color: var(--rose-pink);
-            letter-spacing: 12px;
-            opacity: 0.6;
+        /* ستايل القلوب الصغيرة البديلة للنجوم */
+        .ornament-heart {
+            width: 13px;
+            height: 13px;
+            fill: var(--rose-pink);
+            display: inline-block;
+            vertical-align: middle;
+            opacity: 0.85;
+            margin: 0 4px;
         }
 
         .preloader-title {
@@ -161,11 +165,7 @@
             align-items: center;
             justify-content: center;
             gap: 14px;
-            margin: 16px 0;
-            color: var(--rose-pink);
-            opacity: 0.55;
-            font-size: 0.7rem;
-            letter-spacing: 10px;
+            margin: 20px 0;
         }
 
         .ornament-line::before,
@@ -311,18 +311,15 @@
             margin: 0 auto 28px auto;
         }
 
-        /* تعديلات الموبايل عشان الشاشة المتناسقة بنسبة 100% */
         @media (max-width: 768px) {
             .preloader-title   { font-size: 2.5rem; white-space: nowrap; } 
-            
-            /* هنا التعديل اللي هيخلي الأسامي في سطر واحد وماتنزلش سطرين أبدًا */
             .name-row          { font-size: 2.7rem; white-space: nowrap; width: 100%; text-align: center; } 
-            
             .ampersand         { font-size: 2.5rem; margin: 6px 0; }
             .section-title     { font-size: 3rem; }
             .countdown-box     { width: 62px; }
             .time-num          { font-size: 2.2rem; }
             .content-wrapper   { padding: 80px 10px 60px 10px; }
+            .ornament-heart    { width: 11px; height: 11px; } /* أصغر سنة متناسقة مع الموبايل */
         }
     </style>
 </head>
@@ -341,16 +338,31 @@
                 <path d="M50,30 Q65,10 80,30 Q82,55 50,80 Q18,55 20,30 Q35,10 50,30 Z"
                       fill="none" stroke="#222222" stroke-width="1.6" opacity="0.75"/>
             </g>
+            <!-- SMALL SOLID HEART FOR ORNAMENTS -->
+            <g id="solid-heart">
+                <path d="M50,30 Q65,10 80,30 Q82,55 50,80 Q18,55 20,30 Q35,10 50,30 Z"/>
+            </g>
         </defs>
     </svg>
 
     <!-- Preloader -->
     <div id="preloader">
         <div class="preloader-content">
-            <div class="preloader-ornament">✦ ✦ ✦</div>
+            <!-- تم تغيير النجوم لـ 3 قلوب صغيرة هنا -->
+            <div style="display: flex; gap: 2px;">
+                <svg class="ornament-heart" viewBox="0 0 100 100"><use href="#solid-heart"/></svg>
+                <svg class="ornament-heart" viewBox="0 0 100 100"><use href="#solid-heart"/></svg>
+                <svg class="ornament-heart" viewBox="0 0 100 100"><use href="#solid-heart"/></svg>
+            </div>
+            
             <h1 class="preloader-title">Zyad <span style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--rose-dark);">&</span> Mariam</h1>
             <div class="preloader-subtitle">Wedding Invitation</div>
-            <div class="preloader-ornament" style="margin-top:6px;">✦ ✦ ✦</div>
+            
+            <div style="display: flex; gap: 2px; margin-top: 6px;">
+                <svg class="ornament-heart" viewBox="0 0 100 100"><use href="#solid-heart"/></svg>
+                <svg class="ornament-heart" viewBox="0 0 100 100"><use href="#solid-heart"/></svg>
+                <svg class="ornament-heart" viewBox="0 0 100 100"><use href="#solid-heart"/></svg>
+            </div>
         </div>
     </div>
 
@@ -373,7 +385,10 @@
 
             <p class="pre-title" style="margin-top:18px;">Save The Date</p>
 
-            <div class="ornament-line">✦</div>
+            <!-- تم تغيير النجمة هنا لقلب صغير -->
+            <div class="ornament-line">
+                <svg class="ornament-heart" viewBox="0 0 100 100" style="width:15px; height:15px;"><use href="#solid-heart"/></svg>
+            </div>
 
             <div class="names-column">
                 <h1 class="name-row">Zyad Nasser</h1>
@@ -381,7 +396,10 @@
                 <h1 class="name-row">Mariam Sherif</h1>
             </div>
 
-            <div class="ornament-line">✦</div>
+            <!-- تم تغيير النجمة هنا لقلب صغير -->
+            <div class="ornament-line">
+                <svg class="ornament-heart" viewBox="0 0 100 100" style="width:15px; height:15px;"><use href="#solid-heart"/></svg>
+            </div>
 
             <!-- Countdown -->
             <section class="section">
@@ -458,7 +476,6 @@
             const particle = document.createElement('div');
             particle.classList.add('floating-element');
 
-            // توزيع عشوائي حقيقي 100% يغطي كامل عرض الشاشة بالتساوي من 0 لـ 100
             const x     = Math.random() * 100;
             const speed = Math.random() * 6 + 7;
             const size  = Math.random() * 18 + 42;
