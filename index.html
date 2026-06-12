@@ -340,12 +340,13 @@
             bottom: 30px;
             width: 120px;
             height: auto;
-            transition: transform 0.1s ease, opacity 0.4s ease;
+            /* شيلنا أي حركات ممكن تتعارض وخليناها بالـ transform بس */
+            transition: transform 0.1s ease-out, opacity 0.4s ease;
             opacity: 1;
         }
 
-        #zyad-img { left: 20px; }
-        #mariam-img { right: 20px; }
+        #zyad-img { left: 10px; }
+        #mariam-img { right: 10px; }
 
         .together-mix {
             position: absolute;
@@ -403,8 +404,8 @@
         #knob-mariam { right: 0; transform: translate(50%, -50%); }
         .knob:active { cursor: grabbing; background-color: var(--rose-dark); }
 
-        .success #zyad-img { opacity: 0; transform: scale(0.8); pointer-events: none; }
-        .success #mariam-img { opacity: 0; transform: scale(0.8); pointer-events: none; }
+        .success #zyad-img { opacity: 0; pointer-events: none; }
+        .success #mariam-img { opacity: 0; pointer-events: none; }
         .success .together-mix { 
             opacity: 1; 
             transform: translate(-50%, 0) scale(1); 
@@ -459,6 +460,8 @@
             .content-wrapper   { padding: 80px 10px 60px 10px; }
             .ornament-heart    { width: 11px; height: 11px; }
             .music-toggle-btn  { bottom: 15px; right: 15px; width: 40px; height: 40px; }
+            .character         { width: 90px; } /* تصغير الصور شوية على الموبايل عشان تظبط أحسن */
+            .together-mix      { width: 180px; }
         }
     </style>
 </head>
@@ -685,6 +688,24 @@
             toggleMusic();
         });
 
+        // إيقاف الموسيقى لما تخرج من المتصفح (عشان متشتغلش في الخلفية)
+        let wasMusicPlaying = false;
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                wasMusicPlaying = !music.paused;
+                music.pause();
+                musicBtn.classList.remove('playing');
+                musicIcon.innerHTML = `<path d="${muteIconPath}"/>`;
+            } else {
+                if (wasMusicPlaying) {
+                    music.play().then(() => {
+                        musicBtn.classList.add('playing');
+                        musicIcon.innerHTML = `<path d="${playIconPath}"/>`;
+                    }).catch(() => {});
+                }
+            }
+        });
+
         // --- Interactive Game Logic ---
         const gameCanvas = document.getElementById('game-canvas');
         const zyad = document.getElementById('zyad-img');
@@ -707,9 +728,9 @@
             knobZyad.style.left = `${x}px`;
             pctZyad = x / (midPoint - 18);
             
-            const targetX = (gameCanvas.clientWidth / 2) - 120; 
-            const travelDistance = targetX - 20;
-            zyad.style.left = `${20 + (pctZyad * travelDistance)}px`;
+            // استخدام translateX لضمان الاتجاه الصحيح مهما كان حجم الشاشة
+            const moveAmount = (gameCanvas.clientWidth / 2) - 60; // 60 نص عرض الصورة تقريباً
+            zyad.style.transform = `translateX(${pctZyad * moveAmount}px)`;
             
             checkMeeting();
         }
@@ -725,9 +746,9 @@
             knobMariam.style.right = `${x}px`;
             pctMariam = x / (midPoint - 18);
             
-            const targetX = (gameCanvas.clientWidth / 2) - 120; 
-            const travelDistance = targetX - 20;
-            mariam.style.right = `${20 + (pctMariam * travelDistance)}px`;
+            // استخدام translateX بالسالب عشان تتحرك ناحية الشمال (للنص)
+            const moveAmount = (gameCanvas.clientWidth / 2) - 60;
+            mariam.style.transform = `translateX(-${pctMariam * moveAmount}px)`;
             
             checkMeeting();
         }
