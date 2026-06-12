@@ -68,7 +68,6 @@
             max-width: 600px;
         }
 
-        /* ستايل القلوب الصغيرة البديلة للنجوم */
         .ornament-heart {
             width: 13px;
             height: 13px;
@@ -135,6 +134,39 @@
             8%   { opacity: 0.85; }
             88%  { opacity: 0.85; }
             100% { transform: translateY(-112vh) translateX(-50%) scale(1.1) rotate(18deg); opacity: 0; }
+        }
+
+        /* --- Music Button Style --- */
+        .music-toggle-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: #fff;
+            border: 1px solid var(--rose-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(196,112,112,0.15);
+            transition: all 0.3s ease;
+        }
+        .music-toggle-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--rose-dark);
+            transition: fill 0.3s ease;
+        }
+        /* تأثير الدوران لما الأغنية تشتغل */
+        .music-toggle-btn.playing {
+            animation: spin 4s linear infinite;
+            border-color: var(--rose-pink);
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
         }
 
         /* --- Layout --- */
@@ -319,26 +351,36 @@
             .countdown-box     { width: 62px; }
             .time-num          { font-size: 2.2rem; }
             .content-wrapper   { padding: 80px 10px 60px 10px; }
-            .ornament-heart    { width: 11px; height: 11px; } /* أصغر سنة متناسقة مع الموبايل */
+            .ornament-heart    { width: 11px; height: 11px; }
+            .music-toggle-btn  { bottom: 15px; right: 15px; width: 40px; height: 40px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ===== AUDIO ELEMENT ===== -->
+    <!-- حط رابط ملف الأغنية مكان music.mp3 وسيب loop عشان تعيد لوحدها -->
+    <audio id="bg-music" src="https://youtu.be/0MDkaul2848?si=wD7m7bnAvsPVYnoU" loop></audio>
+
+    <!-- ===== FLOATING MUSIC BUTTON ===== -->
+    <div id="music-btn" class="music-toggle-btn">
+        <!-- أيقونة كتم الصوت الافتراضية (النوتة الموسيقية) -->
+        <svg id="music-icon" viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+    </div>
+
     <!-- ===== GLOBAL SVG DEFS ===== -->
     <svg style="display:none;" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <!-- HEART (Pink for static top) -->
             <g id="watercolor-heart">
                 <path d="M50,30 Q65,10 80,30 Q82,55 50,80 Q18,55 20,30 Q35,10 50,30 Z"
                       fill="none" stroke="var(--rose-pink)" stroke-width="1.6" opacity="0.75"/>
             </g>
-            <!-- BLACK HEART (For flying particles) -->
             <g id="black-heart">
                 <path d="M50,30 Q65,10 80,30 Q82,55 50,80 Q18,55 20,30 Q35,10 50,30 Z"
                       fill="none" stroke="#222222" stroke-width="1.6" opacity="0.75"/>
             </g>
-            <!-- SMALL SOLID HEART FOR ORNAMENTS -->
             <g id="solid-heart">
                 <path d="M50,30 Q65,10 80,30 Q82,55 50,80 Q18,55 20,30 Q35,10 50,30 Z"/>
             </g>
@@ -348,7 +390,6 @@
     <!-- Preloader -->
     <div id="preloader">
         <div class="preloader-content">
-            <!-- تم تغيير النجوم لـ 3 قلوب صغيرة هنا -->
             <div style="display: flex; gap: 2px;">
                 <svg class="ornament-heart" viewBox="0 0 100 100"><use href="#solid-heart"/></svg>
                 <svg class="ornament-heart" viewBox="0 0 100 100"><use href="#solid-heart"/></svg>
@@ -385,7 +426,6 @@
 
             <p class="pre-title" style="margin-top:18px;">Save The Date</p>
 
-            <!-- تم تغيير النجمة هنا لقلب صغير -->
             <div class="ornament-line">
                 <svg class="ornament-heart" viewBox="0 0 100 100" style="width:15px; height:15px;"><use href="#solid-heart"/></svg>
             </div>
@@ -396,7 +436,6 @@
                 <h1 class="name-row">Mariam Sherif</h1>
             </div>
 
-            <!-- تم تغيير النجمة هنا لقلب صغير -->
             <div class="ornament-line">
                 <svg class="ornament-heart" viewBox="0 0 100 100" style="width:15px; height:15px;"><use href="#solid-heart"/></svg>
             </div>
@@ -496,7 +535,47 @@
             setTimeout(() => particle.remove(), speed * 1000);
         }
 
-        setInterval(createFloatingParticle, 500); 
+        setInterval(createFloatingParticle, 500);
+
+        // --- Music Logic ---
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = document.getElementById('music-icon');
+
+        // أيقونات الـ SVG للتشغيل والكتم المباشر
+        const playIconPath = "M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z";
+        const muteIconPath = "M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73l4.27 4.27L21 19.73 4.27 3zM14 7h4V3h-6v5.18l2 2V7z";
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play().then(() => {
+                    musicBtn.classList.add('playing');
+                    musicIcon.innerHTML = `<path d="${playIconPath}"/>`;
+                }).catch(err => console.log("Autoplay blocked by browser until user click."));
+            } else {
+                music.pause();
+                musicBtn.classList.remove('playing');
+                musicIcon.innerHTML = `<path d="${muteIconPath}"/>`;
+            }
+        }
+
+        // تشغيل الموسيقى مع أول كليكة أو لمسة حقيقية للمستخدم في أي مكان بالموقع
+        document.addEventListener('click', function startOnFirstInteraction() {
+            if (music.paused) {
+                music.play().then(() => {
+                    musicBtn.classList.add('playing');
+                    musicIcon.innerHTML = `<path d="${playIconPath}"/>`;
+                });
+            }
+            // بنشيل السامع ده بعد أول كليكة عشان ما يتكررش
+            document.removeEventListener('click', startOnFirstInteraction);
+        }, { once: true });
+
+        // تشغيل/إيقاف يدوي عند الضغط على الزرار نفسه
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // عشان ما يعملش تداخل مع اللمسة العامة للموقع
+            toggleMusic();
+        });
     </script>
 </body>
 </html>
