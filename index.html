@@ -160,7 +160,6 @@
             fill: var(--rose-dark);
             transition: fill 0.3s ease;
         }
-        /* تأثير الدوران لما الأغنية تشتغل */
         .music-toggle-btn.playing {
             animation: spin 4s linear infinite;
             border-color: var(--rose-pink);
@@ -305,6 +304,113 @@
             color: var(--olive-dark);
         }
 
+        /* --- Interactive Game Section --- */
+        .interactive-section {
+            padding: 40px 0;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .interactive-section::before {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(143,168,155,0.3), transparent);
+            margin: 0 auto 50px auto;
+        }
+        
+        .game-area {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background: #ffffff;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(196,112,112,0.06);
+            border: 1px solid var(--rose-light);
+            overflow: hidden;
+        }
+
+        .character {
+            position: absolute;
+            bottom: 30px;
+            width: 120px;
+            height: auto;
+            transition: transform 0.1s ease, opacity 0.4s ease;
+            opacity: 1;
+        }
+
+        #zyad-img { left: 20px; }
+        #mariam-img { right: 20px; }
+
+        .together-mix {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translate(-50%, 0) scale(0.85);
+            width: 240px;
+            height: auto;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+        }
+
+        .controls-container {
+            width: 100%;
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instruction-text {
+            font-size: 1.3rem;
+            color: var(--olive-dark);
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+        }
+
+        .single-track {
+            position: relative;
+            width: 90%;
+            height: 6px;
+            background-color: var(--rose-light);
+            border-radius: 10px;
+            margin-top: 5px;
+        }
+
+        .knob {
+            position: absolute;
+            top: 50%;
+            width: 36px;
+            height: 36px;
+            background-color: var(--gold);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            cursor: grab;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            touch-action: none;
+            z-index: 5;
+        }
+        
+        #knob-zyad { left: 0; transform: translate(-50%, -50%); }
+        #knob-mariam { right: 0; transform: translate(50%, -50%); }
+        .knob:active { cursor: grabbing; background-color: var(--rose-dark); }
+
+        .success #zyad-img { opacity: 0; transform: scale(0.8); pointer-events: none; }
+        .success #mariam-img { opacity: 0; transform: scale(0.8); pointer-events: none; }
+        .success .together-mix { 
+            opacity: 1; 
+            transform: translate(-50%, 0) scale(1); 
+        }
+
+        /* --- Buttons --- */
         .btn-capsule {
             display: inline-block;
             padding: 14px 44px;
@@ -358,19 +464,14 @@
 </head>
 <body>
 
-    <!-- ===== AUDIO ELEMENT ===== -->
-    <!-- حط رابط ملف الأغنية مكان music.mp3 وسيب loop عشان تعيد لوحدها -->
     <audio id="bg-music" src="Albumaty.Com_twwlyt_alhb_gany.mp3" loop></audio>
 
-    <!-- ===== FLOATING MUSIC BUTTON ===== -->
     <div id="music-btn" class="music-toggle-btn">
-        <!-- أيقونة كتم الصوت الافتراضية (النوتة الموسيقية) -->
         <svg id="music-icon" viewBox="0 0 24 24">
             <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
         </svg>
     </div>
 
-    <!-- ===== GLOBAL SVG DEFS ===== -->
     <svg style="display:none;" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <g id="watercolor-heart">
@@ -387,7 +488,6 @@
         </defs>
     </svg>
 
-    <!-- Preloader -->
     <div id="preloader">
         <div class="preloader-content">
             <div style="display: flex; gap: 2px;">
@@ -440,7 +540,6 @@
                 <svg class="ornament-heart" viewBox="0 0 100 100" style="width:15px; height:15px;"><use href="#solid-heart"/></svg>
             </div>
 
-            <!-- Countdown -->
             <section class="section">
                 <p class="pre-title">The Countdown</p>
                 <h2 class="section-title pinyon">July 10, 2026</h2>
@@ -465,7 +564,22 @@
                 </div>
             </section>
 
-            <!-- Location -->
+            <section class="interactive-section">
+                <p class="pre-title">Bring Them Together</p>
+                <div class="game-area" id="game-canvas">
+                    <img src="zyad_standing.png" class="character" id="zyad-img" alt="Zyad">
+                    <img src="mariam_standing.png" class="character" id="mariam-img" alt="Mariam">
+                    <img src="together.png" class="together-mix" id="together-img" alt="Zyad & Mariam">
+                </div>
+                <div class="controls-container">
+                    <div class="instruction-text">قرّب المسافات ليجتمعا..</div>
+                    <div class="single-track" id="main-track">
+                        <div class="knob" id="knob-zyad"></div>
+                        <div class="knob" id="knob-mariam"></div>
+                    </div>
+                </div>
+            </section>
+
             <section class="section">
                 <p class="pre-title">Location & Venue</p>
                 <h2 class="pinyon" style="font-size:4.6rem; margin:0 0 14px 0; color:var(--text-main);">Golden Plaza</h2>
@@ -489,7 +603,7 @@
     </div>
 
     <script>
-        // Preloader
+        // --- Preloader ---
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 document.getElementById('preloader').classList.add('hidden');
@@ -497,12 +611,12 @@
             }, 2400);
         });
 
-        // Countdown
+        // --- Countdown ---
         const targetDate = new Date("July 10, 2026 20:00:00").getTime();
         const timerInterval = setInterval(() => {
             const now  = new Date().getTime();
             const diff = targetDate - now;
-        
+            
             if (diff < 0) { clearInterval(timerInterval); return; }
             document.getElementById("days").innerText  = Math.floor(diff / 86400000).toString().padStart(2,'0');
             document.getElementById("hours").innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2,'0');
@@ -510,7 +624,7 @@
             document.getElementById("secs").innerText  = Math.floor((diff % 60000) / 1000).toString().padStart(2,'0');
         }, 1000);
 
-        // Floating Hearts
+        // --- Floating Hearts ---
         function createFloatingParticle() {
             const particle = document.createElement('div');
             particle.classList.add('floating-element');
@@ -523,7 +637,6 @@
             
             particle.style.left = x + 'vw';
             particle.style.animationDuration = speed + 's';
-
             particle.innerHTML = `
                 <svg viewBox="0 0 100 100" width="${size}" height="${size}">
                     <use href="#black-heart" opacity="0.65"/>
@@ -534,7 +647,6 @@
             document.body.appendChild(particle);
             setTimeout(() => particle.remove(), speed * 1000);
         }
-
         setInterval(createFloatingParticle, 500);
 
         // --- Music Logic ---
@@ -542,7 +654,6 @@
         const musicBtn = document.getElementById('music-btn');
         const musicIcon = document.getElementById('music-icon');
 
-        // أيقونات الـ SVG للتشغيل والكتم المباشر
         const playIconPath = "M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z";
         const muteIconPath = "M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73l4.27 4.27L21 19.73 4.27 3zM14 7h4V3h-6v5.18l2 2V7z";
 
@@ -551,7 +662,7 @@
                 music.play().then(() => {
                     musicBtn.classList.add('playing');
                     musicIcon.innerHTML = `<path d="${playIconPath}"/>`;
-                }).catch(err => console.log("Autoplay blocked by browser until user click."));
+                }).catch(err => console.log("Autoplay blocked."));
             } else {
                 music.pause();
                 musicBtn.classList.remove('playing');
@@ -559,7 +670,6 @@
             }
         }
 
-        // تشغيل الموسيقى مع أول كليكة أو لمسة حقيقية للمستخدم في أي مكان بالموقع
         document.addEventListener('click', function startOnFirstInteraction() {
             if (music.paused) {
                 music.play().then(() => {
@@ -567,15 +677,90 @@
                     musicIcon.innerHTML = `<path d="${playIconPath}"/>`;
                 });
             }
-            // بنشيل السامع ده بعد أول كليكة عشان ما يتكررش
             document.removeEventListener('click', startOnFirstInteraction);
         }, { once: true });
 
-        // تشغيل/إيقاف يدوي عند الضغط على الزرار نفسه
         musicBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // عشان ما يعملش تداخل مع اللمسة العامة للموقع
+            e.stopPropagation();
             toggleMusic();
         });
+
+        // --- Interactive Game Logic ---
+        const gameCanvas = document.getElementById('game-canvas');
+        const zyad = document.getElementById('zyad-img');
+        const mariam = document.getElementById('mariam-img');
+        const track = document.getElementById('main-track');
+        const knobZyad = document.getElementById('knob-zyad');
+        const knobMariam = document.getElementById('knob-mariam');
+
+        let pctZyad = 0;   
+        let pctMariam = 0; 
+
+        function moveZyad(clientX) {
+            const rect = track.getBoundingClientRect();
+            let x = clientX - rect.left;
+            const midPoint = rect.width / 2;
+            
+            if (x < 0) x = 0;
+            if (x > midPoint - 18) x = midPoint - 18; 
+            
+            knobZyad.style.left = `${x}px`;
+            pctZyad = x / (midPoint - 18);
+            
+            const targetX = (gameCanvas.clientWidth / 2) - 120; 
+            const travelDistance = targetX - 20;
+            zyad.style.left = `${20 + (pctZyad * travelDistance)}px`;
+            
+            checkMeeting();
+        }
+
+        function moveMariam(clientX) {
+            const rect = track.getBoundingClientRect();
+            let x = rect.right - clientX;
+            const midPoint = rect.width / 2;
+            
+            if (x < 0) x = 0;
+            if (x > midPoint - 18) x = midPoint - 18; 
+            
+            knobMariam.style.right = `${x}px`;
+            pctMariam = x / (midPoint - 18);
+            
+            const targetX = (gameCanvas.clientWidth / 2) - 120; 
+            const travelDistance = targetX - 20;
+            mariam.style.right = `${20 + (pctMariam * travelDistance)}px`;
+            
+            checkMeeting();
+        }
+
+        function checkMeeting() {
+            if (pctZyad > 0.95 && pctMariam > 0.95) {
+                gameCanvas.classList.add('success');
+            } else {
+                gameCanvas.classList.remove('success');
+            }
+        }
+
+        let dragZyad = false;
+        let dragMariam = false;
+
+        knobZyad.addEventListener('mousedown', () => dragZyad = true);
+        knobZyad.addEventListener('touchstart', () => dragZyad = true);
+
+        knobMariam.addEventListener('mousedown', () => dragMariam = true);
+        knobMariam.addEventListener('touchstart', () => dragMariam = true);
+
+        window.addEventListener('mousemove', (e) => {
+            if (dragZyad) moveZyad(e.clientX);
+            if (dragMariam) moveMariam(e.clientX);
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (dragZyad) moveZyad(e.touches[0].clientX);
+            if (dragMariam) moveMariam(e.touches[0].clientX);
+        });
+
+        window.addEventListener('mouseup', () => { dragZyad = false; dragMariam = false; });
+        window.addEventListener('touchend', () => { dragZyad = false; dragMariam = false; });
     </script>
 </body>
 </html>
